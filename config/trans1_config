@@ -1,0 +1,28 @@
+root = "./"
+thread = 8
+harbor = 0
+cluster = root.."config/clusterConfig.lua"
+
+--lua配置
+start = "main"
+bootstrap = "snlua bootstrap"
+lualoader = root .. "skynetlib/lualib/loader.lua"
+
+luaservice = root.."skynetlib/service/?.lua;"..root.."work/?.lua;"..root.."work/trans1/?.lua;"..root.."work/common/db/mysql/?.lua;"..root.."work/common/db/redis/?.lua;"..root.."work/common/webService/?.lua;"..root.."work/trans1/service/?.lua;"
+
+cpath = root.."skynetlib/cservice/?.so"
+
+
+lua_path = root.."skynetlib/lualib/?.lua;"..root.."skynetlib/lualib/?/init.lua;"..root.."work/?.lua;"..root.."work/trans1/?.lua;"..root.."work/common/?.lua;"
+
+lua_cpath = root .. "skynetlib/luaclib/?.so"
+
+trans1_ndex = 1
+
+testPay = true
+
+--ls配置
+--daemon = "/var/log/skynet/trans1.pid"
+--logger = "/var/log/skynet/trans1.log"
+--logpath = "."
+
