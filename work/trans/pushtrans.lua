@@ -55,7 +55,7 @@ else
 	    end
 
         local status ,msg= pcall(function()
-            cluster.call(nodeName, addr, "pushtrans",config.transServer.ip,config.transServer.port)
+            cluster.call(nodeName, addr, "pushtrans",config.server.ip,config.server.port)
         end)
         if not status then
             commonlog.common.info("pushtrans fail "..msg)

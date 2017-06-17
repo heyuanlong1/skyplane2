@@ -61,7 +61,7 @@ else
 	    end
 
         local status ,msg= pcall(function()
-            cluster.call(nodeName, addr, "pulllobby")
+            return cluster.call(nodeName, addr, "pulllobby")
         end)
         if not status then
             commonlog.common.info("pulllobby fail "..msg)

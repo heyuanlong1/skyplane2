@@ -12,6 +12,6 @@ skynet.start(function()
 
 
 
-	commonlog.com.info("start login")
+	logger.common.info("start login")
     skynet.exit()
 end)

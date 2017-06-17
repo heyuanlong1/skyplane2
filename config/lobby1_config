@@ -8,19 +8,19 @@ start = "main"
 bootstrap = "snlua bootstrap"
 lualoader = root .. "skynetlib/lualib/loader.lua"
 
-luaservice = root.."skynetlib/service/?.lua;"..root.."work/?.lua;"..root.."work/lobby1/?.lua;"..root.."work/common/db/mysql/?.lua;"..root.."work/common/db/redis/?.lua;"..root.."work/common/webService/?.lua;"..root.."work/lobby1/service/?.lua;"
+luaservice = root.."skynetlib/service/?.lua;"..root.."work/?.lua;"..root.."work/lobby/?.lua;"..root.."work/common/db/mysql/?.lua;"..root.."work/common/db/redis/?.lua;"..root.."work/common/webService/?.lua;"..root.."work/lobby/service/?.lua;"
 
 cpath = root.."skynetlib/cservice/?.so"
 
 
-lua_path = root.."skynetlib/lualib/?.lua;"..root.."skynetlib/lualib/?/init.lua;"..root.."work/?.lua;"..root.."work/lobby1/?.lua;"..root.."work/common/?.lua;"
+lua_path = root.."skynetlib/lualib/?.lua;"..root.."skynetlib/lualib/?/init.lua;"..root.."work/?.lua;"..root.."work/lobby/?.lua;"..root.."work/common/?.lua;"
 
 lua_cpath = root .. "skynetlib/luaclib/?.so"
 
-lobby1_ndex = 1
+lobby_ndex = 1
 
 --ls配置
---daemon = "/var/log/skynet/lobby1.pid"
---logger = "/var/log/skynet/lobby1.log"
+--daemon = "/var/log/skynet/lobby.pid"
+--logger = "/var/log/skynet/lobby.log"
 --logpath = "."
 

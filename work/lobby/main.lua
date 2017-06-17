@@ -12,6 +12,6 @@ skynet.start(function()
 
 
 
-	commonlog.com.info("start lobby")
+	logger.common.info("start lobby")
     skynet.exit()
 end)

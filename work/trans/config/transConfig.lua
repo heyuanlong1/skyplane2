@@ -1,9 +1,10 @@
 local config
 config =
 {
-    testServer =
+    server =
     {
-        port = 9024,
+    	ip = "127.0.0.1",
+        port = 9025,
     }
 }
 

@@ -1,5 +1,5 @@
 local skynet = require "skynet"
-require "skynet.manager"
+local skynet = require "skynet.manager"
 local cluster = require "cluster"
 local commonlog 	= require "common.log.commonlog"
 local utils 		= require "common.tools.utils"
@@ -8,6 +8,8 @@ local nodeName 			= "clusterServer"
 local nodeService 		= "managerCluster"
 local interval 			= 5
 local expiretime 		= 10
+
+local mode = ...
 
 if mode == "call" then
 
@@ -38,13 +40,15 @@ else
 	function CMD.start()
 	    cluster.open(nodeName)
 	    cluster.register(nodeService)
-	    
-	    local s = skynet.newservice(SERVICE_NAME, "check")
+
+	    local s = skynet.newservice(SERVICE_NAME, "call")
 		skynet.send(s,"lua","start",skynet.self())
-	    
 	end
 
+
+
 	function CMD.pushlobby(ip,port)
+		commonlog.common.info("CMD.pushlobby()"..ip..":"..port)
 		local key = ip.."___"..port
 		if lobbyMap.items[key] == nil then
 			lobbyMap.isChange = true
@@ -52,6 +56,7 @@ else
 	    lobbyMap.items[key] = skynet.time()
 	end
 	function CMD.pushtrans(ip,port)
+		commonlog.common.info("CMD.pushtrans()"..ip..":"..port)
 		local key = ip.."___"..port
 		if transMap.items[key] == nil then
 			transMap.isChange = true
@@ -59,6 +64,7 @@ else
 	    transMap.items[key] = skynet.time()
 	end
 	function CMD.pulllobby()
+		commonlog.common.info("CMD.pulllobby()")
 	    if lobbyMap.isChange == false then
 	    	return {isChange = false,items = {} }
 	    else
@@ -68,10 +74,12 @@ else
 	    		arr = utils.Split(k,"___")
 	    		table.insert(ret.items,{ip = arr[1],port = arr[2]})
 	    	end
+	    	
 	    	return ret
 	    end
 	end
 	function CMD.pulltrans()
+		commonlog.common.info("CMD.pulltrans()")
 	    if transMap.isChange == false then
 	    	return {isChange = false,items = {} }
 	    else

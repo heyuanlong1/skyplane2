@@ -76,7 +76,7 @@ else
 	    end
 
         local status ,msg= pcall(function()
-            cluster.call(nodeName, addr, "pulltrans")
+            return cluster.call(nodeName, addr, "pulltrans")
         end)
         if not status then
             commonlog.common.info("pulltrans fail "..msg)
