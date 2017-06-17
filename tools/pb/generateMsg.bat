@@ -4,10 +4,10 @@ echo "delete all *.pb Files"
 del /F *.pb.*
 
 echo "generate .pb File By .proto"
-protoc.exe test.proto -o test.pb
+protoc.exe msg.proto -o msg.pb
  
 
 echo "copy client .pb File to bin/pb"
-copy /Y ".\test.pb"   			"../../work/pb/"
+copy /Y ".\msg.pb"   			"../../work/workcommon/pb/"
 
 pause

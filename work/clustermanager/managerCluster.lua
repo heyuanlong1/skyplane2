@@ -63,34 +63,37 @@ else
 		end
 	    transMap.items[key] = skynet.time()
 	end
-	function CMD.pulllobby()
+	function CMD.pulllobby(isFirst)
 		commonlog.common.info("CMD.pulllobby()")
-	    if lobbyMap.isChange == false then
-	    	return {isChange = false,items = {} }
+		local ret
+	    if lobbyMap.isChange == false and isFirst == false then
+	    	ret = {isChange = false,items = {} }
 	    else
-	    	local ret = {isChange = true,items = {} }
+	    	ret = {isChange = true,items = {} }
 	    	local arr
-	    	for k,v in pairs(lobbyMap) do
+	    	for k,v in pairs(lobbyMap.items) do
 	    		arr = utils.Split(k,"___")
 	    		table.insert(ret.items,{ip = arr[1],port = arr[2]})
 	    	end
-	    	
-	    	return ret
 	    end
+	    lobbyMap.isChange = false
+	    return ret
 	end
-	function CMD.pulltrans()
+	function CMD.pulltrans(isFirst)
 		commonlog.common.info("CMD.pulltrans()")
-	    if transMap.isChange == false then
-	    	return {isChange = false,items = {} }
+		local ret
+	    if transMap.isChange == false and isFirst == false then
+	    	ret =  {isChange = false,items = {} }
 	    else
-	    	local ret = {isChange = true,items = {} }
+	    	ret = {isChange = true,items = {} }
 	    	local arr
-	    	for k,v in pairs(transMap) do
+	    	for k,v in pairs(transMap.items) do
 	    		arr = utils.Split(k,"___")
 	    		table.insert(ret.items,{ip = arr[1],port = arr[2]})
 	    	end
-	    	return ret
 	    end
+	    transMap.isChange = false
+	    return ret
 	end
 	function CMD.checklobby()
 		local t = skynet.time()
@@ -105,8 +108,6 @@ else
 	    		lobbyMap.items[v] = nil
 	    	end
 	    	lobbyMap.isChange = true
-	    else
-	    	lobbyMap.isChange = false
 	    end
 	end
 	function CMD.checktrans()
@@ -122,8 +123,6 @@ else
 	    		transMap.items[v] = nil
 	    	end
 	    	transMap.isChange = true
-	    else
-	    	lobbyMap.isChange = false
 	    end
 	end
 

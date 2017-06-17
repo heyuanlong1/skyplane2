@@ -14,10 +14,12 @@ if mode == "call" then
 	local CMD       = {}
 
 	function CMD.start(service)
+		local isFirst = true
 		while true do
 			skynet.sleep(interval * 100)
-			skynet.call(service,"lua","pulltrans") 			--定义让service去拉去trans
+			skynet.call(service,"lua","pulltrans",isFirst) 			--定义让service去拉去trans
 			skynet.call(service,"lua","pushlobby")
+			isFirst = false
 		end
 	end
 
@@ -62,13 +64,13 @@ else
 	    end
 
         local status ,msg= pcall(function()
-            cluster.call(nodeName, addr, "pushlobby",config.lobbyServer.ip,config.lobbyServer.port)
+            cluster.call(nodeName, addr, "pushlobby",config.server.ip,config.server.port)
         end)
         if not status then
             commonlog.common.info("pushlobby fail "..msg)
         end
 	end
-	function CMD.pulltrans()
+	function CMD.pulltrans(isFirst)
 	    local addr = connectToServer(nodeName)
 	    if addr == nil then
 	    	commonlog.common.info("can not connect "..nodeName)
@@ -76,7 +78,7 @@ else
 	    end
 
         local status ,msg= pcall(function()
-            return cluster.call(nodeName, addr, "pulltrans")
+            return cluster.call(nodeName, addr, "pulltrans",isFirst)
         end)
         if not status then
             commonlog.common.info("pulltrans fail "..msg)
@@ -96,10 +98,11 @@ else
 	    if index > transNums then
 	    	index = 1
 	    end
-	    return transNums[index]
+	    return transList[index]
 	end
 
 	function CMD.start()
+		skynet.register(".serverlobby")
 		local s = skynet.newservice(SERVICE_NAME, "call")
 		skynet.send(s,"lua","start",skynet.self())
 	end

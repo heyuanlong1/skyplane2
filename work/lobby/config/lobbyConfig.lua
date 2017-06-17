@@ -1,10 +1,10 @@
 local config
 config =
 {
-    lobbyServer =
+    server =
     {
     	ip = "127.0.0.1",
-        port = 9024,
+        port = 9022,
     }
 }
 

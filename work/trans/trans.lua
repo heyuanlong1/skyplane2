@@ -48,6 +48,10 @@ CMD.message = function (fd, packet )
 
     local pbmessage = pbCode.getProtoBuffStrByMsgID(msgId)
     local req, errormsg = protobuf.decode(pbmessage, msg)
+    if req == nil then
+        logger.common.error("protobuf.decode error :"..errormsg)
+        return
+    end
 
     local f = dealCmd[msgId]
     if f then

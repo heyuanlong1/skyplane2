@@ -14,9 +14,11 @@ if mode == "call" then
 	local CMD       = {}
 
 	function CMD.start(service)
+		local isFirst = true
 		while true do
 			skynet.sleep(interval * 100)
-			skynet.call(service,"lua","pulllobby") 			--定义让service去拉去lobby
+			skynet.call(service,"lua","pulllobby" ,isFirst) 			--定义让service去拉去lobby
+			isFirst = false
 		end
 	end
 
@@ -35,7 +37,7 @@ else
 
 	local index		= 0			--轮训获取lobby
 	local lobbyNums = 0			--lobby数量
-	local lobbyList = {}		--lobby存储
+	local lobbyList = {}		--lobby存储 {{ip=**,port=**},{},...}
 
 	local function connectToServer(nodeName)
 	        local status, addr = xpcall(
@@ -53,7 +55,7 @@ else
 
 	end
 
-	function CMD.pulllobby()
+	function CMD.pulllobby(isFirst)
 	    local addr = connectToServer(nodeName)
 	    if addr == nil then
 	    	commonlog.common.info("can not connect "..nodeName)
@@ -61,7 +63,7 @@ else
 	    end
 
         local status ,msg= pcall(function()
-            return cluster.call(nodeName, addr, "pulllobby")
+            return cluster.call(nodeName, addr, "pulllobby",isFirst)
         end)
         if not status then
             commonlog.common.info("pulllobby fail "..msg)
@@ -81,10 +83,11 @@ else
 	    if index > lobbyNums then
 	    	index = 1
 	    end
-	    return lobbyNums[index]
+	    return lobbyList[index]
 	end
 
 	function CMD.start()
+		skynet.register(".getlobby")
 		local s = skynet.newservice(SERVICE_NAME, "call")
 		skynet.send(s,"lua","start",skynet.self())
 	end
