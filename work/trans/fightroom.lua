@@ -1,6 +1,6 @@
 local skynet = require "skynet"
 require "skynet.manager"
-local config = require "config.lobbyConfig"
+local config = require "config.transConfig"
 
 local socketdriver  = require "socketdriver"
 local protobuf      = require "protobuf"
@@ -22,35 +22,25 @@ local function response(fd,msgID,resp)
     local packet = string.pack(">s2", string.pack("<I4", respId)..msg)
     socketdriver.send(fd, packet)
 end
+local function responsePacket(fd,packet)
+    local p = string.pack(">s2", packet)
+    socketdriver.send(fd, p)
+end
+
 
 local CMD 		= {}
-local oldfd     = 0
-function CMD.matchReq(fd,req)
-	logger.common.info("matchReq");
-    if oldfd == 0 then
-        oldfd = fd
-        return 
-    end
+function CMD.fightMsg(fd,req,packet,room)
+	logger.common.info("fightMsg");
 
-    local resp = {
-        errorCode = 0,
-        ip = "",
-        port =0,
-    }
-    local addr = skynet.call(".serverlobby", "lua", "gettrans")
-    if addr == nil then
-        resp.errorCode = errorcode.getlobbyaddrfail
-    else
-        resp.ip = addr.ip
-        resp.port = addr.port
+    for k,v in pairs(room) do
+        if fd ~= v then
+            responsePacket(v,packet)
+        end
     end
-    response(oldfd,pbCode.msg.matchReq,resp)
-    response(fd,pbCode.msg.matchReq,resp)
-    oldfd = 0
 end
 
 function CMD.start(service)
-	skynet.register(".matchroom")
+	skynet.register(".fightroom")
 end
 
 skynet.start(function()

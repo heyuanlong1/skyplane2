@@ -10,7 +10,15 @@ skynet.start(function()
     local pushtrans = skynet.newservice("pushtrans")
     skynet.call(pushtrans, "lua", "start")
 
+    local trans = skynet.newservice("trans")
+    skynet.call(trans, "lua", "open", {
+        port = config.server.port,
+        maxclient = 10000,
+        nodelay = true,
+    })
 
+    local fightroom = skynet.newservice("fightroom")
+    skynet.call(fightroom, "lua", "start")
 
 	logger.common.info("start lobby")
     skynet.exit()

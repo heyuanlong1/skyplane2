@@ -1,5 +1,5 @@
 
-Ä
+€
 	msg.protomsg",
 loginReq
 deviceid (	
@@ -9,9 +9,15 @@
 
 ip (	
 port ("
-getTransReq";
-getTransResp
+
+matchReq"8
+	matchResp
 	errorCode (
 
 ip (	
-port (
+port ("@
+fightMsg
+userid (
+roomid (	
+x (	
+y (

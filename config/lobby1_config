@@ -20,7 +20,7 @@ lua_cpath = root .. "skynetlib/luaclib/?.so"
 lobby_ndex = 1
 
 --ls配置
---daemon = "/var/log/skynet/lobby.pid"
---logger = "/var/log/skynet/lobby.log"
---logpath = "."
+daemon = "/var/log/skynet/pid/lobby1.pid"
+logger = "/var/log/skynet/log/lobby1.log"
+logpath = "."
 

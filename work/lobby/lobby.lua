@@ -44,7 +44,7 @@ CMD.message = function (fd, packet )
         return
     end
     
-    if msgId ==  pbCode.msg.getTransReq then
+    if msgId ==  pbCode.msg.matchReq then
         skynet.call(".matchroom","lua","matchReq",fd,req)
     else
         logger.common.error("not deal msgId :"..msgId);

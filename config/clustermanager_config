@@ -17,8 +17,8 @@ lua_path = root.."skynetlib/lualib/?.lua;"..root.."skynetlib/lualib/?/init.lua;"
 
 lua_cpath = root .. "skynetlib/luaclib/?.so"
 
---ls配置
---daemon = "/var/log/skynet/clustermanager.pid"
---logger = "/var/log/skynet/clustermanager.log"
---logpath = "."
+
+daemon = "/var/log/skynet/pid/clustermanager.pid"
+logger = "/var/log/skynet/log/clustermanager.log"
+logpath = "."
 

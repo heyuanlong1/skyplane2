@@ -5,9 +5,9 @@ local pbCode = {}
 pbCode.msg = {
 	loginReq				= 111,
 	loginResp				= 112,
-	getTransReq				= 113,
-	getTransResp			= 114,
-	wailiTestLpushRequest	= 115,
+	matchReq				= 113,
+	matchResp			= 114,
+	fightMsg	= 115,
 	wailiTestLpushResponse	= 116,
 	wailiTestSortRequest	= 117,
 	wailiTestSortResponse	= 118,
@@ -18,8 +18,7 @@ pbCode.msg = {
 -- req - > rep
 local repToResp = {
 	[pbCode.msg.loginReq] = pbCode.msg.loginResp,
-	[pbCode.msg.getTransReq] = pbCode.msg.getTransResp,
-	[pbCode.msg.wailiTestLpushRequest] = pbCode.msg.wailiTestLpushResponse,
+	[pbCode.msg.matchReq] = pbCode.msg.matchResp,
 	[pbCode.msg.wailiTestSortRequest] = pbCode.msg.wailiTestSortResponse,
 }
 function pbCode.getRepToRespID(msgID)
@@ -32,9 +31,9 @@ end
 local msgIDToPBStr = {
 	[pbCode.msg.loginReq] = "msg.loginReq",
 	[pbCode.msg.loginResp] = "msg.loginResp",
-	[pbCode.msg.getTransReq] = "msg.getTransReq",
-	[pbCode.msg.getTransResp] = "msg.getTransResp",
-	[pbCode.msg.wailiTestLpushRequest] = "msg.wailiTestLpushRequest",
+	[pbCode.msg.matchReq] = "msg.matchReq",
+	[pbCode.msg.matchResp] = "msg.matchResp",
+	[pbCode.msg.fightMsg] = "msg.fightMsg",
 	[pbCode.msg.wailiTestLpushResponse] = "msg.wailiTestLpushResponse",
 	[pbCode.msg.wailiTestSortRequest] = "msg.wailiTestSortRequest",
 	[pbCode.msg.wailiTestSortResponse] = "msg.wailiTestSortResponse",

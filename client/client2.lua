@@ -73,10 +73,10 @@ while true do
 
     local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.fightMsg),
     {
-        userid = 1,
+        userid = 1111,
         roomid = 2,
-        x = 3,
-        y = 4,
+        x = 333333,
+        y = 444444,
     })
     socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.fightMsg)..stringbuffer) )
 
