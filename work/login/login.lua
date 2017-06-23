@@ -25,7 +25,7 @@ local function response(fd,msgID,resp)
     local msg = protobuf.encode(pbmessage , resp)
     local packet = string.pack(">s2", string.pack("<I4", respId)..msg)
     socketdriver.send(fd, packet)
-    closefd(fd)
+    --closefd(fd)   --socket不应该无错误的主动断掉
 end
 
 
