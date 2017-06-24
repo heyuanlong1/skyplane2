@@ -1,0 +1,8 @@
+
+
+script/start.sh  启动后台程序
+
+启动
+lua client/client.lua
+lua client/client2.lua
+
