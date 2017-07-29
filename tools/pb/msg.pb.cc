@@ -20,6 +20,12 @@ namespace msg {
 
 namespace {
 
+const ::google::protobuf::Descriptor* regReq_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  regReq_reflection_ = NULL;
+const ::google::protobuf::Descriptor* regResp_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  regResp_reflection_ = NULL;
 const ::google::protobuf::Descriptor* loginReq_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   loginReq_reflection_ = NULL;
@@ -45,10 +51,42 @@ void protobuf_AssignDesc_msg_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "msg.proto");
   GOOGLE_CHECK(file != NULL);
-  loginReq_descriptor_ = file->message_type(0);
+  regReq_descriptor_ = file->message_type(0);
+  static const int regReq_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regReq, deviceid_),
+  };
+  regReq_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      regReq_descriptor_,
+      regReq::default_instance_,
+      regReq_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regReq, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regReq, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(regReq));
+  regResp_descriptor_ = file->message_type(1);
+  static const int regResp_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regResp, errorcode_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regResp, userid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regResp, password_),
+  };
+  regResp_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      regResp_descriptor_,
+      regResp::default_instance_,
+      regResp_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regResp, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(regResp, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(regResp));
+  loginReq_descriptor_ = file->message_type(2);
   static const int loginReq_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginReq, deviceid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginReq, userid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginReq, password_),
   };
   loginReq_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -61,11 +99,11 @@ void protobuf_AssignDesc_msg_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(loginReq));
-  loginResp_descriptor_ = file->message_type(1);
+  loginResp_descriptor_ = file->message_type(3);
   static const int loginResp_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginResp, errorcode_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginResp, ip_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginResp, port_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginResp, lobbyip_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(loginResp, lobbyport_),
   };
   loginResp_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -78,7 +116,7 @@ void protobuf_AssignDesc_msg_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(loginResp));
-  matchReq_descriptor_ = file->message_type(2);
+  matchReq_descriptor_ = file->message_type(4);
   static const int matchReq_offsets_[1] = {
   };
   matchReq_reflection_ =
@@ -92,7 +130,7 @@ void protobuf_AssignDesc_msg_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(matchReq));
-  matchResp_descriptor_ = file->message_type(3);
+  matchResp_descriptor_ = file->message_type(5);
   static const int matchResp_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(matchResp, errorcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(matchResp, ip_),
@@ -109,7 +147,7 @@ void protobuf_AssignDesc_msg_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(matchResp));
-  fightMsg_descriptor_ = file->message_type(4);
+  fightMsg_descriptor_ = file->message_type(6);
   static const int fightMsg_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(fightMsg, userid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(fightMsg, roomid_),
@@ -140,6 +178,10 @@ inline void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    regReq_descriptor_, &regReq::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    regResp_descriptor_, &regResp::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     loginReq_descriptor_, &loginReq::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     loginResp_descriptor_, &loginResp::default_instance());
@@ -154,6 +196,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
 }  // namespace
 
 void protobuf_ShutdownFile_msg_2eproto() {
+  delete regReq::default_instance_;
+  delete regReq_reflection_;
+  delete regResp::default_instance_;
+  delete regResp_reflection_;
   delete loginReq::default_instance_;
   delete loginReq_reflection_;
   delete loginResp::default_instance_;
@@ -173,20 +219,26 @@ void protobuf_AddDesc_msg_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\tmsg.proto\022\003msg\",\n\010loginReq\022\020\n\010deviceid"
-    "\030\001 \002(\t\022\016\n\006userid\030\002 \001(\005\"8\n\tloginResp\022\021\n\te"
-    "rrorCode\030\001 \002(\005\022\n\n\002ip\030\002 \002(\t\022\014\n\004port\030\003 \002(\005"
-    "\"\n\n\010matchReq\"8\n\tmatchResp\022\021\n\terrorCode\030\001"
-    " \002(\005\022\n\n\002ip\030\002 \002(\t\022\014\n\004port\030\003 \002(\005\"@\n\010fightM"
-    "sg\022\016\n\006userid\030\001 \002(\005\022\016\n\006roomid\030\002 \002(\005\022\t\n\001x\030"
-    "\003 \002(\005\022\t\n\001y\030\004 \002(\005", 256);
+    "\n\tmsg.proto\022\003msg\"\032\n\006regReq\022\020\n\010deviceid\030\001"
+    " \002(\t\">\n\007regResp\022\021\n\terrorCode\030\001 \002(\005\022\016\n\006us"
+    "erid\030\002 \002(\005\022\020\n\010password\030\003 \002(\t\",\n\010loginReq"
+    "\022\016\n\006userid\030\001 \002(\005\022\020\n\010password\030\002 \002(\t\"B\n\tlo"
+    "ginResp\022\021\n\terrorCode\030\001 \002(\005\022\017\n\007lobbyip\030\002 "
+    "\002(\t\022\021\n\tlobbyport\030\003 \002(\005\"\n\n\010matchReq\"8\n\tma"
+    "tchResp\022\021\n\terrorCode\030\001 \002(\005\022\n\n\002ip\030\002 \002(\t\022\014"
+    "\n\004port\030\003 \002(\005\"@\n\010fightMsg\022\016\n\006userid\030\001 \002(\005"
+    "\022\016\n\006roomid\030\002 \002(\005\022\t\n\001x\030\003 \002(\005\022\t\n\001y\030\004 \002(\005", 358);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "msg.proto", &protobuf_RegisterTypes);
+  regReq::default_instance_ = new regReq();
+  regResp::default_instance_ = new regResp();
   loginReq::default_instance_ = new loginReq();
   loginResp::default_instance_ = new loginResp();
   matchReq::default_instance_ = new matchReq();
   matchResp::default_instance_ = new matchResp();
   fightMsg::default_instance_ = new fightMsg();
+  regReq::default_instance_->InitAsDefaultInstance();
+  regResp::default_instance_->InitAsDefaultInstance();
   loginReq::default_instance_->InitAsDefaultInstance();
   loginResp::default_instance_->InitAsDefaultInstance();
   matchReq::default_instance_->InitAsDefaultInstance();
@@ -205,8 +257,589 @@ struct StaticDescriptorInitializer_msg_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int loginReq::kDeviceidFieldNumber;
+const int regReq::kDeviceidFieldNumber;
+#endif  // !_MSC_VER
+
+regReq::regReq()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:msg.regReq)
+}
+
+void regReq::InitAsDefaultInstance() {
+}
+
+regReq::regReq(const regReq& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:msg.regReq)
+}
+
+void regReq::SharedCtor() {
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  deviceid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+regReq::~regReq() {
+  // @@protoc_insertion_point(destructor:msg.regReq)
+  SharedDtor();
+}
+
+void regReq::SharedDtor() {
+  if (deviceid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete deviceid_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void regReq::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* regReq::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return regReq_descriptor_;
+}
+
+const regReq& regReq::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_msg_2eproto();
+  return *default_instance_;
+}
+
+regReq* regReq::default_instance_ = NULL;
+
+regReq* regReq::New() const {
+  return new regReq;
+}
+
+void regReq::Clear() {
+  if (has_deviceid()) {
+    if (deviceid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+      deviceid_->clear();
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool regReq::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:msg.regReq)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required string deviceid = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_deviceid()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->deviceid().data(), this->deviceid().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "deviceid");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:msg.regReq)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:msg.regReq)
+  return false;
+#undef DO_
+}
+
+void regReq::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:msg.regReq)
+  // required string deviceid = 1;
+  if (has_deviceid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->deviceid().data(), this->deviceid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "deviceid");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->deviceid(), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:msg.regReq)
+}
+
+::google::protobuf::uint8* regReq::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:msg.regReq)
+  // required string deviceid = 1;
+  if (has_deviceid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->deviceid().data(), this->deviceid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "deviceid");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->deviceid(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:msg.regReq)
+  return target;
+}
+
+int regReq::ByteSize() const {
+  int total_size = 0;
+
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required string deviceid = 1;
+    if (has_deviceid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->deviceid());
+    }
+
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void regReq::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const regReq* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const regReq*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void regReq::MergeFrom(const regReq& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_deviceid()) {
+      set_deviceid(from.deviceid());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void regReq::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void regReq::CopyFrom(const regReq& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool regReq::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+
+  return true;
+}
+
+void regReq::Swap(regReq* other) {
+  if (other != this) {
+    std::swap(deviceid_, other->deviceid_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata regReq::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = regReq_descriptor_;
+  metadata.reflection = regReq_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int regResp::kErrorCodeFieldNumber;
+const int regResp::kUseridFieldNumber;
+const int regResp::kPasswordFieldNumber;
+#endif  // !_MSC_VER
+
+regResp::regResp()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:msg.regResp)
+}
+
+void regResp::InitAsDefaultInstance() {
+}
+
+regResp::regResp(const regResp& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:msg.regResp)
+}
+
+void regResp::SharedCtor() {
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  errorcode_ = 0;
+  userid_ = 0;
+  password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+regResp::~regResp() {
+  // @@protoc_insertion_point(destructor:msg.regResp)
+  SharedDtor();
+}
+
+void regResp::SharedDtor() {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete password_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void regResp::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* regResp::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return regResp_descriptor_;
+}
+
+const regResp& regResp::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_msg_2eproto();
+  return *default_instance_;
+}
+
+regResp* regResp::default_instance_ = NULL;
+
+regResp* regResp::New() const {
+  return new regResp;
+}
+
+void regResp::Clear() {
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
+  &reinterpret_cast<regResp*>(16)->f) - \
+   reinterpret_cast<char*>(16))
+
+#define ZR_(first, last) do {                              \
+    size_t f = OFFSET_OF_FIELD_(first);                    \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
+    ::memset(&first, 0, n);                                \
+  } while (0)
+
+  if (_has_bits_[0 / 32] & 7) {
+    ZR_(errorcode_, userid_);
+    if (has_password()) {
+      if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        password_->clear();
+      }
+    }
+  }
+
+#undef OFFSET_OF_FIELD_
+#undef ZR_
+
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool regResp::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:msg.regResp)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required int32 errorCode = 1;
+      case 1: {
+        if (tag == 8) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &errorcode_)));
+          set_has_errorcode();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_userid;
+        break;
+      }
+
+      // required int32 userid = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_userid:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &userid_)));
+          set_has_userid();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_password;
+        break;
+      }
+
+      // required string password = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_password:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_password()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->password().data(), this->password().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "password");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:msg.regResp)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:msg.regResp)
+  return false;
+#undef DO_
+}
+
+void regResp::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:msg.regResp)
+  // required int32 errorCode = 1;
+  if (has_errorcode()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->errorcode(), output);
+  }
+
+  // required int32 userid = 2;
+  if (has_userid()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->userid(), output);
+  }
+
+  // required string password = 3;
+  if (has_password()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->password().data(), this->password().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "password");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->password(), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:msg.regResp)
+}
+
+::google::protobuf::uint8* regResp::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:msg.regResp)
+  // required int32 errorCode = 1;
+  if (has_errorcode()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->errorcode(), target);
+  }
+
+  // required int32 userid = 2;
+  if (has_userid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->userid(), target);
+  }
+
+  // required string password = 3;
+  if (has_password()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->password().data(), this->password().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "password");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->password(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:msg.regResp)
+  return target;
+}
+
+int regResp::ByteSize() const {
+  int total_size = 0;
+
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required int32 errorCode = 1;
+    if (has_errorcode()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->errorcode());
+    }
+
+    // required int32 userid = 2;
+    if (has_userid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->userid());
+    }
+
+    // required string password = 3;
+    if (has_password()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->password());
+    }
+
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void regResp::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const regResp* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const regResp*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void regResp::MergeFrom(const regResp& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_errorcode()) {
+      set_errorcode(from.errorcode());
+    }
+    if (from.has_userid()) {
+      set_userid(from.userid());
+    }
+    if (from.has_password()) {
+      set_password(from.password());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void regResp::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void regResp::CopyFrom(const regResp& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool regResp::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
+
+  return true;
+}
+
+void regResp::Swap(regResp* other) {
+  if (other != this) {
+    std::swap(errorcode_, other->errorcode_);
+    std::swap(userid_, other->userid_);
+    std::swap(password_, other->password_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata regResp::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = regResp_descriptor_;
+  metadata.reflection = regResp_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
 const int loginReq::kUseridFieldNumber;
+const int loginReq::kPasswordFieldNumber;
 #endif  // !_MSC_VER
 
 loginReq::loginReq()
@@ -228,8 +861,8 @@ loginReq::loginReq(const loginReq& from)
 void loginReq::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  deviceid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   userid_ = 0;
+  password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -239,8 +872,8 @@ loginReq::~loginReq() {
 }
 
 void loginReq::SharedDtor() {
-  if (deviceid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete deviceid_;
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete password_;
   }
   if (this != default_instance_) {
   }
@@ -269,12 +902,12 @@ loginReq* loginReq::New() const {
 
 void loginReq::Clear() {
   if (_has_bits_[0 / 32] & 3) {
-    if (has_deviceid()) {
-      if (deviceid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        deviceid_->clear();
+    userid_ = 0;
+    if (has_password()) {
+      if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        password_->clear();
       }
     }
-    userid_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -290,30 +923,30 @@ bool loginReq::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required string deviceid = 1;
+      // required int32 userid = 1;
       case 1: {
-        if (tag == 10) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_deviceid()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->deviceid().data(), this->deviceid().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "deviceid");
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(16)) goto parse_userid;
-        break;
-      }
-
-      // optional int32 userid = 2;
-      case 2: {
-        if (tag == 16) {
-         parse_userid:
+        if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &userid_)));
           set_has_userid();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_password;
+        break;
+      }
+
+      // required string password = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_password:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_password()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->password().data(), this->password().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "password");
         } else {
           goto handle_unusual;
         }
@@ -346,19 +979,19 @@ failure:
 void loginReq::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:msg.loginReq)
-  // required string deviceid = 1;
-  if (has_deviceid()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->deviceid().data(), this->deviceid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "deviceid");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      1, this->deviceid(), output);
+  // required int32 userid = 1;
+  if (has_userid()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->userid(), output);
   }
 
-  // optional int32 userid = 2;
-  if (has_userid()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->userid(), output);
+  // required string password = 2;
+  if (has_password()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->password().data(), this->password().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "password");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->password(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -371,20 +1004,20 @@ void loginReq::SerializeWithCachedSizes(
 ::google::protobuf::uint8* loginReq::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:msg.loginReq)
-  // required string deviceid = 1;
-  if (has_deviceid()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->deviceid().data(), this->deviceid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "deviceid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->deviceid(), target);
+  // required int32 userid = 1;
+  if (has_userid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->userid(), target);
   }
 
-  // optional int32 userid = 2;
-  if (has_userid()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->userid(), target);
+  // required string password = 2;
+  if (has_password()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->password().data(), this->password().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "password");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->password(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -399,18 +1032,18 @@ int loginReq::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required string deviceid = 1;
-    if (has_deviceid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->deviceid());
-    }
-
-    // optional int32 userid = 2;
+    // required int32 userid = 1;
     if (has_userid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->userid());
+    }
+
+    // required string password = 2;
+    if (has_password()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->password());
     }
 
   }
@@ -440,11 +1073,11 @@ void loginReq::MergeFrom(const ::google::protobuf::Message& from) {
 void loginReq::MergeFrom(const loginReq& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_deviceid()) {
-      set_deviceid(from.deviceid());
-    }
     if (from.has_userid()) {
       set_userid(from.userid());
+    }
+    if (from.has_password()) {
+      set_password(from.password());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -463,15 +1096,15 @@ void loginReq::CopyFrom(const loginReq& from) {
 }
 
 bool loginReq::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
 
   return true;
 }
 
 void loginReq::Swap(loginReq* other) {
   if (other != this) {
-    std::swap(deviceid_, other->deviceid_);
     std::swap(userid_, other->userid_);
+    std::swap(password_, other->password_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -491,8 +1124,8 @@ void loginReq::Swap(loginReq* other) {
 
 #ifndef _MSC_VER
 const int loginResp::kErrorCodeFieldNumber;
-const int loginResp::kIpFieldNumber;
-const int loginResp::kPortFieldNumber;
+const int loginResp::kLobbyipFieldNumber;
+const int loginResp::kLobbyportFieldNumber;
 #endif  // !_MSC_VER
 
 loginResp::loginResp()
@@ -515,8 +1148,8 @@ void loginResp::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   errorcode_ = 0;
-  ip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  port_ = 0;
+  lobbyip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  lobbyport_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -526,8 +1159,8 @@ loginResp::~loginResp() {
 }
 
 void loginResp::SharedDtor() {
-  if (ip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete ip_;
+  if (lobbyip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete lobbyip_;
   }
   if (this != default_instance_) {
   }
@@ -566,10 +1199,10 @@ void loginResp::Clear() {
   } while (0)
 
   if (_has_bits_[0 / 32] & 7) {
-    ZR_(errorcode_, port_);
-    if (has_ip()) {
-      if (ip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        ip_->clear();
+    ZR_(errorcode_, lobbyport_);
+    if (has_lobbyip()) {
+      if (lobbyip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        lobbyip_->clear();
       }
     }
   }
@@ -601,35 +1234,35 @@ bool loginResp::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_ip;
+        if (input->ExpectTag(18)) goto parse_lobbyip;
         break;
       }
 
-      // required string ip = 2;
+      // required string lobbyip = 2;
       case 2: {
         if (tag == 18) {
-         parse_ip:
+         parse_lobbyip:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_ip()));
+                input, this->mutable_lobbyip()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->ip().data(), this->ip().length(),
+            this->lobbyip().data(), this->lobbyip().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
-            "ip");
+            "lobbyip");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_port;
+        if (input->ExpectTag(24)) goto parse_lobbyport;
         break;
       }
 
-      // required int32 port = 3;
+      // required int32 lobbyport = 3;
       case 3: {
         if (tag == 24) {
-         parse_port:
+         parse_lobbyport:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &port_)));
-          set_has_port();
+                 input, &lobbyport_)));
+          set_has_lobbyport();
         } else {
           goto handle_unusual;
         }
@@ -667,19 +1300,19 @@ void loginResp::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->errorcode(), output);
   }
 
-  // required string ip = 2;
-  if (has_ip()) {
+  // required string lobbyip = 2;
+  if (has_lobbyip()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->ip().data(), this->ip().length(),
+      this->lobbyip().data(), this->lobbyip().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "ip");
+      "lobbyip");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->ip(), output);
+      2, this->lobbyip(), output);
   }
 
-  // required int32 port = 3;
-  if (has_port()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->port(), output);
+  // required int32 lobbyport = 3;
+  if (has_lobbyport()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->lobbyport(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -697,20 +1330,20 @@ void loginResp::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->errorcode(), target);
   }
 
-  // required string ip = 2;
-  if (has_ip()) {
+  // required string lobbyip = 2;
+  if (has_lobbyip()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->ip().data(), this->ip().length(),
+      this->lobbyip().data(), this->lobbyip().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "ip");
+      "lobbyip");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->ip(), target);
+        2, this->lobbyip(), target);
   }
 
-  // required int32 port = 3;
-  if (has_port()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->port(), target);
+  // required int32 lobbyport = 3;
+  if (has_lobbyport()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->lobbyport(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -732,18 +1365,18 @@ int loginResp::ByteSize() const {
           this->errorcode());
     }
 
-    // required string ip = 2;
-    if (has_ip()) {
+    // required string lobbyip = 2;
+    if (has_lobbyip()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->ip());
+          this->lobbyip());
     }
 
-    // required int32 port = 3;
-    if (has_port()) {
+    // required int32 lobbyport = 3;
+    if (has_lobbyport()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->port());
+          this->lobbyport());
     }
 
   }
@@ -776,11 +1409,11 @@ void loginResp::MergeFrom(const loginResp& from) {
     if (from.has_errorcode()) {
       set_errorcode(from.errorcode());
     }
-    if (from.has_ip()) {
-      set_ip(from.ip());
+    if (from.has_lobbyip()) {
+      set_lobbyip(from.lobbyip());
     }
-    if (from.has_port()) {
-      set_port(from.port());
+    if (from.has_lobbyport()) {
+      set_lobbyport(from.lobbyport());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -807,8 +1440,8 @@ bool loginResp::IsInitialized() const {
 void loginResp::Swap(loginResp* other) {
   if (other != this) {
     std::swap(errorcode_, other->errorcode_);
-    std::swap(ip_, other->ip_);
-    std::swap(port_, other->port_);
+    std::swap(lobbyip_, other->lobbyip_);
+    std::swap(lobbyport_, other->lobbyport_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

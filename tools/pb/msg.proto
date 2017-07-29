@@ -22,6 +22,16 @@ message loginResp
     required int32 lobbyport= 3;
 }
 
+message loginLobbyReq
+{
+    required int32 userid = 1;
+    required string password = 2;
+}
+message loginLobbyResp
+{
+    required int32 errorCode = 1;
+}
+
 message matchReq
 {
 	

@@ -7,8 +7,9 @@ pbCode.msg = {
 	regResp					= 102,
 	loginReq				= 111,
 	loginResp				= 112,
-	matchReq				= 113,
-	matchResp				= 114,
+
+	loginLobbyReq			= 113,
+	loginLobbyResp			= 114,
 	fightMsg				= 115,
 	wailiTestLpushResponse	= 116,
 	wailiTestSortRequest	= 117,
@@ -21,7 +22,7 @@ pbCode.msg = {
 local repToResp = {
 	[pbCode.msg.regReq] 	= pbCode.msg.regResp,
 	[pbCode.msg.loginReq] 	= pbCode.msg.loginResp,
-	[pbCode.msg.matchReq] 	= pbCode.msg.matchResp,
+	[pbCode.msg.loginLobbyReq] 	= pbCode.msg.loginLobbyResp,
 	[pbCode.msg.wailiTestSortRequest] = pbCode.msg.wailiTestSortResponse,
 }
 function pbCode.getRepToRespID(msgID)
@@ -36,8 +37,8 @@ local msgIDToPBStr = {
 	[pbCode.msg.regResp] = "msg.regResp",
 	[pbCode.msg.loginReq] = "msg.loginReq",
 	[pbCode.msg.loginResp] = "msg.loginResp",
-	[pbCode.msg.matchReq] = "msg.matchReq",
-	[pbCode.msg.matchResp] = "msg.matchResp",
+	[pbCode.msg.loginLobbyReq] = "msg.loginLobbyReq",
+	[pbCode.msg.loginLobbyResp] = "msg.loginLobbyResp",
 	[pbCode.msg.fightMsg] = "msg.fightMsg",
 	[pbCode.msg.wailiTestLpushResponse] = "msg.wailiTestLpushResponse",
 	[pbCode.msg.wailiTestSortRequest] = "msg.wailiTestSortRequest",

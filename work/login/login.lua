@@ -46,7 +46,7 @@ function handler.message(fd, msg, sz)	--处理网络包
 end
 
 function handler.command(cmd, source, ...)
-    local f = CMD[command]
+    local f = CMD[cmd]
     if f then
         skynet.ret(skynet.pack(f(...)))
     end
@@ -57,6 +57,7 @@ gateserver.start(handler)
 -------------------------------------------------------------------------------------
 
 CMD.timeoutClosefd = function ()
+    logger.common.info("login_timeout_fd")
     local t = skynet.now()
     local interval = 100 * 1 * 60 
     local tb = {}
@@ -75,6 +76,10 @@ CMD.message = function (fd, packet )
     local msg = string.sub(packet, 5)
 
     local pbmessage = pbCode.getPBStrByMsgID(msgId)
+    if pbmessage == nil then
+        logger.common.error("not find msgId :"..msgId);
+        return
+    end
     local req, errormsg = protobuf.decode(pbmessage, msg)
     if req == nil then
         logger.common.error("protobuf.decode error :"..errormsg)
@@ -116,11 +121,13 @@ dealCmd[pbCode.msg.regReq] = function(fd, req )
         userid = userid,
         password =passwd,
     }
+    --存数据库表示注册了
     response(fd,pbCode.msg.regReq,resp)
 end
 
 dealCmd[pbCode.msg.loginReq] = function(fd, req )
     --未做重复登录的判断
+    --取数据库判断是否注册过
     logger.common.info("userid :"..req.userid)
     logger.common.info("password :".. req.password)
     local resp = {
@@ -136,6 +143,8 @@ dealCmd[pbCode.msg.loginReq] = function(fd, req )
         resp.lobbyip = addr.ip
         resp.lobbyport = addr.port
     end
+    --存redis表示登录了
+    redisAccount.setUserLogin(req.userid,req.password)
     response(fd,pbCode.msg.loginReq,resp)
 end
 

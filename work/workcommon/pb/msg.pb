@@ -1,14 +1,19 @@
 
-€
-	msg.protomsg",
-loginReq
-deviceid (	
-userid ("8
+æ
+	msg.protomsg"
+regReq
+deviceid (	">
+regResp
+	errorCode (
+userid (
+password (	",
+loginReq
+userid (
+password (	"B
 	loginResp
-	errorCode (
-
-ip (	
-port ("
+	errorCode (
+lobbyip (	
+	lobbyport ("
 
 matchReq"8
 	matchResp

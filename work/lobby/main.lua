@@ -13,6 +13,7 @@ skynet.start(function()
 
 
     local lobby = skynet.newservice("lobby")
+    skynet.name(".lobby", lobby)
     skynet.call(lobby, "lua", "open", {
         port = config.server.port,
         maxclient = 10000,

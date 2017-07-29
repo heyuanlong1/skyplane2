@@ -33,6 +33,8 @@ void  protobuf_AddDesc_msg_2eproto();
 void protobuf_AssignDesc_msg_2eproto();
 void protobuf_ShutdownFile_msg_2eproto();
 
+class regReq;
+class regResp;
 class loginReq;
 class loginResp;
 class matchReq;
@@ -40,6 +42,194 @@ class matchResp;
 class fightMsg;
 
 // ===================================================================
+
+class regReq : public ::google::protobuf::Message {
+ public:
+  regReq();
+  virtual ~regReq();
+
+  regReq(const regReq& from);
+
+  inline regReq& operator=(const regReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const regReq& default_instance();
+
+  void Swap(regReq* other);
+
+  // implements Message ----------------------------------------------
+
+  regReq* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const regReq& from);
+  void MergeFrom(const regReq& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required string deviceid = 1;
+  inline bool has_deviceid() const;
+  inline void clear_deviceid();
+  static const int kDeviceidFieldNumber = 1;
+  inline const ::std::string& deviceid() const;
+  inline void set_deviceid(const ::std::string& value);
+  inline void set_deviceid(const char* value);
+  inline void set_deviceid(const char* value, size_t size);
+  inline ::std::string* mutable_deviceid();
+  inline ::std::string* release_deviceid();
+  inline void set_allocated_deviceid(::std::string* deviceid);
+
+  // @@protoc_insertion_point(class_scope:msg.regReq)
+ private:
+  inline void set_has_deviceid();
+  inline void clear_has_deviceid();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* deviceid_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static regReq* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class regResp : public ::google::protobuf::Message {
+ public:
+  regResp();
+  virtual ~regResp();
+
+  regResp(const regResp& from);
+
+  inline regResp& operator=(const regResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const regResp& default_instance();
+
+  void Swap(regResp* other);
+
+  // implements Message ----------------------------------------------
+
+  regResp* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const regResp& from);
+  void MergeFrom(const regResp& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 errorCode = 1;
+  inline bool has_errorcode() const;
+  inline void clear_errorcode();
+  static const int kErrorCodeFieldNumber = 1;
+  inline ::google::protobuf::int32 errorcode() const;
+  inline void set_errorcode(::google::protobuf::int32 value);
+
+  // required int32 userid = 2;
+  inline bool has_userid() const;
+  inline void clear_userid();
+  static const int kUseridFieldNumber = 2;
+  inline ::google::protobuf::int32 userid() const;
+  inline void set_userid(::google::protobuf::int32 value);
+
+  // required string password = 3;
+  inline bool has_password() const;
+  inline void clear_password();
+  static const int kPasswordFieldNumber = 3;
+  inline const ::std::string& password() const;
+  inline void set_password(const ::std::string& value);
+  inline void set_password(const char* value);
+  inline void set_password(const char* value, size_t size);
+  inline ::std::string* mutable_password();
+  inline ::std::string* release_password();
+  inline void set_allocated_password(::std::string* password);
+
+  // @@protoc_insertion_point(class_scope:msg.regResp)
+ private:
+  inline void set_has_errorcode();
+  inline void clear_has_errorcode();
+  inline void set_has_userid();
+  inline void clear_has_userid();
+  inline void set_has_password();
+  inline void clear_has_password();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int32 errorcode_;
+  ::google::protobuf::int32 userid_;
+  ::std::string* password_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static regResp* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class loginReq : public ::google::protobuf::Message {
  public:
@@ -94,37 +284,37 @@ class loginReq : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required string deviceid = 1;
-  inline bool has_deviceid() const;
-  inline void clear_deviceid();
-  static const int kDeviceidFieldNumber = 1;
-  inline const ::std::string& deviceid() const;
-  inline void set_deviceid(const ::std::string& value);
-  inline void set_deviceid(const char* value);
-  inline void set_deviceid(const char* value, size_t size);
-  inline ::std::string* mutable_deviceid();
-  inline ::std::string* release_deviceid();
-  inline void set_allocated_deviceid(::std::string* deviceid);
-
-  // optional int32 userid = 2;
+  // required int32 userid = 1;
   inline bool has_userid() const;
   inline void clear_userid();
-  static const int kUseridFieldNumber = 2;
+  static const int kUseridFieldNumber = 1;
   inline ::google::protobuf::int32 userid() const;
   inline void set_userid(::google::protobuf::int32 value);
 
+  // required string password = 2;
+  inline bool has_password() const;
+  inline void clear_password();
+  static const int kPasswordFieldNumber = 2;
+  inline const ::std::string& password() const;
+  inline void set_password(const ::std::string& value);
+  inline void set_password(const char* value);
+  inline void set_password(const char* value, size_t size);
+  inline ::std::string* mutable_password();
+  inline ::std::string* release_password();
+  inline void set_allocated_password(::std::string* password);
+
   // @@protoc_insertion_point(class_scope:msg.loginReq)
  private:
-  inline void set_has_deviceid();
-  inline void clear_has_deviceid();
   inline void set_has_userid();
   inline void clear_has_userid();
+  inline void set_has_password();
+  inline void clear_has_password();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::std::string* deviceid_;
+  ::std::string* password_;
   ::google::protobuf::int32 userid_;
   friend void  protobuf_AddDesc_msg_2eproto();
   friend void protobuf_AssignDesc_msg_2eproto();
@@ -195,41 +385,41 @@ class loginResp : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 errorcode() const;
   inline void set_errorcode(::google::protobuf::int32 value);
 
-  // required string ip = 2;
-  inline bool has_ip() const;
-  inline void clear_ip();
-  static const int kIpFieldNumber = 2;
-  inline const ::std::string& ip() const;
-  inline void set_ip(const ::std::string& value);
-  inline void set_ip(const char* value);
-  inline void set_ip(const char* value, size_t size);
-  inline ::std::string* mutable_ip();
-  inline ::std::string* release_ip();
-  inline void set_allocated_ip(::std::string* ip);
+  // required string lobbyip = 2;
+  inline bool has_lobbyip() const;
+  inline void clear_lobbyip();
+  static const int kLobbyipFieldNumber = 2;
+  inline const ::std::string& lobbyip() const;
+  inline void set_lobbyip(const ::std::string& value);
+  inline void set_lobbyip(const char* value);
+  inline void set_lobbyip(const char* value, size_t size);
+  inline ::std::string* mutable_lobbyip();
+  inline ::std::string* release_lobbyip();
+  inline void set_allocated_lobbyip(::std::string* lobbyip);
 
-  // required int32 port = 3;
-  inline bool has_port() const;
-  inline void clear_port();
-  static const int kPortFieldNumber = 3;
-  inline ::google::protobuf::int32 port() const;
-  inline void set_port(::google::protobuf::int32 value);
+  // required int32 lobbyport = 3;
+  inline bool has_lobbyport() const;
+  inline void clear_lobbyport();
+  static const int kLobbyportFieldNumber = 3;
+  inline ::google::protobuf::int32 lobbyport() const;
+  inline void set_lobbyport(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:msg.loginResp)
  private:
   inline void set_has_errorcode();
   inline void clear_has_errorcode();
-  inline void set_has_ip();
-  inline void clear_has_ip();
-  inline void set_has_port();
-  inline void clear_has_port();
+  inline void set_has_lobbyip();
+  inline void clear_has_lobbyip();
+  inline void set_has_lobbyport();
+  inline void clear_has_lobbyport();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::std::string* ip_;
+  ::std::string* lobbyip_;
   ::google::protobuf::int32 errorcode_;
-  ::google::protobuf::int32 port_;
+  ::google::protobuf::int32 lobbyport_;
   friend void  protobuf_AddDesc_msg_2eproto();
   friend void protobuf_AssignDesc_msg_2eproto();
   friend void protobuf_ShutdownFile_msg_2eproto();
@@ -524,61 +714,61 @@ class fightMsg : public ::google::protobuf::Message {
 
 // ===================================================================
 
-// loginReq
+// regReq
 
 // required string deviceid = 1;
-inline bool loginReq::has_deviceid() const {
+inline bool regReq::has_deviceid() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void loginReq::set_has_deviceid() {
+inline void regReq::set_has_deviceid() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void loginReq::clear_has_deviceid() {
+inline void regReq::clear_has_deviceid() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void loginReq::clear_deviceid() {
+inline void regReq::clear_deviceid() {
   if (deviceid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     deviceid_->clear();
   }
   clear_has_deviceid();
 }
-inline const ::std::string& loginReq::deviceid() const {
-  // @@protoc_insertion_point(field_get:msg.loginReq.deviceid)
+inline const ::std::string& regReq::deviceid() const {
+  // @@protoc_insertion_point(field_get:msg.regReq.deviceid)
   return *deviceid_;
 }
-inline void loginReq::set_deviceid(const ::std::string& value) {
+inline void regReq::set_deviceid(const ::std::string& value) {
   set_has_deviceid();
   if (deviceid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     deviceid_ = new ::std::string;
   }
   deviceid_->assign(value);
-  // @@protoc_insertion_point(field_set:msg.loginReq.deviceid)
+  // @@protoc_insertion_point(field_set:msg.regReq.deviceid)
 }
-inline void loginReq::set_deviceid(const char* value) {
+inline void regReq::set_deviceid(const char* value) {
   set_has_deviceid();
   if (deviceid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     deviceid_ = new ::std::string;
   }
   deviceid_->assign(value);
-  // @@protoc_insertion_point(field_set_char:msg.loginReq.deviceid)
+  // @@protoc_insertion_point(field_set_char:msg.regReq.deviceid)
 }
-inline void loginReq::set_deviceid(const char* value, size_t size) {
+inline void regReq::set_deviceid(const char* value, size_t size) {
   set_has_deviceid();
   if (deviceid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     deviceid_ = new ::std::string;
   }
   deviceid_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:msg.loginReq.deviceid)
+  // @@protoc_insertion_point(field_set_pointer:msg.regReq.deviceid)
 }
-inline ::std::string* loginReq::mutable_deviceid() {
+inline ::std::string* regReq::mutable_deviceid() {
   set_has_deviceid();
   if (deviceid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     deviceid_ = new ::std::string;
   }
-  // @@protoc_insertion_point(field_mutable:msg.loginReq.deviceid)
+  // @@protoc_insertion_point(field_mutable:msg.regReq.deviceid)
   return deviceid_;
 }
-inline ::std::string* loginReq::release_deviceid() {
+inline ::std::string* regReq::release_deviceid() {
   clear_has_deviceid();
   if (deviceid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     return NULL;
@@ -588,7 +778,7 @@ inline ::std::string* loginReq::release_deviceid() {
     return temp;
   }
 }
-inline void loginReq::set_allocated_deviceid(::std::string* deviceid) {
+inline void regReq::set_allocated_deviceid(::std::string* deviceid) {
   if (deviceid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete deviceid_;
   }
@@ -599,18 +789,150 @@ inline void loginReq::set_allocated_deviceid(::std::string* deviceid) {
     clear_has_deviceid();
     deviceid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
-  // @@protoc_insertion_point(field_set_allocated:msg.loginReq.deviceid)
+  // @@protoc_insertion_point(field_set_allocated:msg.regReq.deviceid)
 }
 
-// optional int32 userid = 2;
-inline bool loginReq::has_userid() const {
+// -------------------------------------------------------------------
+
+// regResp
+
+// required int32 errorCode = 1;
+inline bool regResp::has_errorcode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void regResp::set_has_errorcode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void regResp::clear_has_errorcode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void regResp::clear_errorcode() {
+  errorcode_ = 0;
+  clear_has_errorcode();
+}
+inline ::google::protobuf::int32 regResp::errorcode() const {
+  // @@protoc_insertion_point(field_get:msg.regResp.errorCode)
+  return errorcode_;
+}
+inline void regResp::set_errorcode(::google::protobuf::int32 value) {
+  set_has_errorcode();
+  errorcode_ = value;
+  // @@protoc_insertion_point(field_set:msg.regResp.errorCode)
+}
+
+// required int32 userid = 2;
+inline bool regResp::has_userid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void loginReq::set_has_userid() {
+inline void regResp::set_has_userid() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void loginReq::clear_has_userid() {
+inline void regResp::clear_has_userid() {
   _has_bits_[0] &= ~0x00000002u;
+}
+inline void regResp::clear_userid() {
+  userid_ = 0;
+  clear_has_userid();
+}
+inline ::google::protobuf::int32 regResp::userid() const {
+  // @@protoc_insertion_point(field_get:msg.regResp.userid)
+  return userid_;
+}
+inline void regResp::set_userid(::google::protobuf::int32 value) {
+  set_has_userid();
+  userid_ = value;
+  // @@protoc_insertion_point(field_set:msg.regResp.userid)
+}
+
+// required string password = 3;
+inline bool regResp::has_password() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void regResp::set_has_password() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void regResp::clear_has_password() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void regResp::clear_password() {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_->clear();
+  }
+  clear_has_password();
+}
+inline const ::std::string& regResp::password() const {
+  // @@protoc_insertion_point(field_get:msg.regResp.password)
+  return *password_;
+}
+inline void regResp::set_password(const ::std::string& value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set:msg.regResp.password)
+}
+inline void regResp::set_password(const char* value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set_char:msg.regResp.password)
+}
+inline void regResp::set_password(const char* value, size_t size) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:msg.regResp.password)
+}
+inline ::std::string* regResp::mutable_password() {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:msg.regResp.password)
+  return password_;
+}
+inline ::std::string* regResp::release_password() {
+  clear_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = password_;
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void regResp::set_allocated_password(::std::string* password) {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete password_;
+  }
+  if (password) {
+    set_has_password();
+    password_ = password;
+  } else {
+    clear_has_password();
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:msg.regResp.password)
+}
+
+// -------------------------------------------------------------------
+
+// loginReq
+
+// required int32 userid = 1;
+inline bool loginReq::has_userid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void loginReq::set_has_userid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void loginReq::clear_has_userid() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void loginReq::clear_userid() {
   userid_ = 0;
@@ -624,6 +946,82 @@ inline void loginReq::set_userid(::google::protobuf::int32 value) {
   set_has_userid();
   userid_ = value;
   // @@protoc_insertion_point(field_set:msg.loginReq.userid)
+}
+
+// required string password = 2;
+inline bool loginReq::has_password() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void loginReq::set_has_password() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void loginReq::clear_has_password() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void loginReq::clear_password() {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_->clear();
+  }
+  clear_has_password();
+}
+inline const ::std::string& loginReq::password() const {
+  // @@protoc_insertion_point(field_get:msg.loginReq.password)
+  return *password_;
+}
+inline void loginReq::set_password(const ::std::string& value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set:msg.loginReq.password)
+}
+inline void loginReq::set_password(const char* value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set_char:msg.loginReq.password)
+}
+inline void loginReq::set_password(const char* value, size_t size) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:msg.loginReq.password)
+}
+inline ::std::string* loginReq::mutable_password() {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:msg.loginReq.password)
+  return password_;
+}
+inline ::std::string* loginReq::release_password() {
+  clear_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = password_;
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void loginReq::set_allocated_password(::std::string* password) {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete password_;
+  }
+  if (password) {
+    set_has_password();
+    password_ = password;
+  } else {
+    clear_has_password();
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:msg.loginReq.password)
 }
 
 // -------------------------------------------------------------------
@@ -654,104 +1052,104 @@ inline void loginResp::set_errorcode(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:msg.loginResp.errorCode)
 }
 
-// required string ip = 2;
-inline bool loginResp::has_ip() const {
+// required string lobbyip = 2;
+inline bool loginResp::has_lobbyip() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void loginResp::set_has_ip() {
+inline void loginResp::set_has_lobbyip() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void loginResp::clear_has_ip() {
+inline void loginResp::clear_has_lobbyip() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void loginResp::clear_ip() {
-  if (ip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_->clear();
+inline void loginResp::clear_lobbyip() {
+  if (lobbyip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    lobbyip_->clear();
   }
-  clear_has_ip();
+  clear_has_lobbyip();
 }
-inline const ::std::string& loginResp::ip() const {
-  // @@protoc_insertion_point(field_get:msg.loginResp.ip)
-  return *ip_;
+inline const ::std::string& loginResp::lobbyip() const {
+  // @@protoc_insertion_point(field_get:msg.loginResp.lobbyip)
+  return *lobbyip_;
 }
-inline void loginResp::set_ip(const ::std::string& value) {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
+inline void loginResp::set_lobbyip(const ::std::string& value) {
+  set_has_lobbyip();
+  if (lobbyip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    lobbyip_ = new ::std::string;
   }
-  ip_->assign(value);
-  // @@protoc_insertion_point(field_set:msg.loginResp.ip)
+  lobbyip_->assign(value);
+  // @@protoc_insertion_point(field_set:msg.loginResp.lobbyip)
 }
-inline void loginResp::set_ip(const char* value) {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
+inline void loginResp::set_lobbyip(const char* value) {
+  set_has_lobbyip();
+  if (lobbyip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    lobbyip_ = new ::std::string;
   }
-  ip_->assign(value);
-  // @@protoc_insertion_point(field_set_char:msg.loginResp.ip)
+  lobbyip_->assign(value);
+  // @@protoc_insertion_point(field_set_char:msg.loginResp.lobbyip)
 }
-inline void loginResp::set_ip(const char* value, size_t size) {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
+inline void loginResp::set_lobbyip(const char* value, size_t size) {
+  set_has_lobbyip();
+  if (lobbyip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    lobbyip_ = new ::std::string;
   }
-  ip_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:msg.loginResp.ip)
+  lobbyip_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:msg.loginResp.lobbyip)
 }
-inline ::std::string* loginResp::mutable_ip() {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
+inline ::std::string* loginResp::mutable_lobbyip() {
+  set_has_lobbyip();
+  if (lobbyip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    lobbyip_ = new ::std::string;
   }
-  // @@protoc_insertion_point(field_mutable:msg.loginResp.ip)
-  return ip_;
+  // @@protoc_insertion_point(field_mutable:msg.loginResp.lobbyip)
+  return lobbyip_;
 }
-inline ::std::string* loginResp::release_ip() {
-  clear_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+inline ::std::string* loginResp::release_lobbyip() {
+  clear_has_lobbyip();
+  if (lobbyip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     return NULL;
   } else {
-    ::std::string* temp = ip_;
-    ip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    ::std::string* temp = lobbyip_;
+    lobbyip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
-inline void loginResp::set_allocated_ip(::std::string* ip) {
-  if (ip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete ip_;
+inline void loginResp::set_allocated_lobbyip(::std::string* lobbyip) {
+  if (lobbyip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete lobbyip_;
   }
-  if (ip) {
-    set_has_ip();
-    ip_ = ip;
+  if (lobbyip) {
+    set_has_lobbyip();
+    lobbyip_ = lobbyip;
   } else {
-    clear_has_ip();
-    ip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    clear_has_lobbyip();
+    lobbyip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
-  // @@protoc_insertion_point(field_set_allocated:msg.loginResp.ip)
+  // @@protoc_insertion_point(field_set_allocated:msg.loginResp.lobbyip)
 }
 
-// required int32 port = 3;
-inline bool loginResp::has_port() const {
+// required int32 lobbyport = 3;
+inline bool loginResp::has_lobbyport() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void loginResp::set_has_port() {
+inline void loginResp::set_has_lobbyport() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void loginResp::clear_has_port() {
+inline void loginResp::clear_has_lobbyport() {
   _has_bits_[0] &= ~0x00000004u;
 }
-inline void loginResp::clear_port() {
-  port_ = 0;
-  clear_has_port();
+inline void loginResp::clear_lobbyport() {
+  lobbyport_ = 0;
+  clear_has_lobbyport();
 }
-inline ::google::protobuf::int32 loginResp::port() const {
-  // @@protoc_insertion_point(field_get:msg.loginResp.port)
-  return port_;
+inline ::google::protobuf::int32 loginResp::lobbyport() const {
+  // @@protoc_insertion_point(field_get:msg.loginResp.lobbyport)
+  return lobbyport_;
 }
-inline void loginResp::set_port(::google::protobuf::int32 value) {
-  set_has_port();
-  port_ = value;
-  // @@protoc_insertion_point(field_set:msg.loginResp.port)
+inline void loginResp::set_lobbyport(::google::protobuf::int32 value) {
+  set_has_lobbyport();
+  lobbyport_ = value;
+  // @@protoc_insertion_point(field_set:msg.loginResp.lobbyport)
 }
 
 // -------------------------------------------------------------------

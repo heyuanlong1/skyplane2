@@ -18,7 +18,7 @@ local levelTags =
 
 local function defaultFormat(logLevel, moduleName, msg, ...)
     msg = string.format(msg, ...)
-    return string.format([[[%s][%s][%s]:%s]], levelTags[logLevel], moduleName, os.date(os.date("%Y-%m-%d %H:%M:%S")), msg)
+    return string.format([[[%s][%s][%s]:%s]], levelTags[logLevel], moduleName, os.date(os.date("%Y%m%d %H:%M:%S")), msg)
 end
 
 local function defaultOut(msg)

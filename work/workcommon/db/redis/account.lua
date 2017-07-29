@@ -15,7 +15,7 @@ end
 
 
 function m.getNextUserid()
-    return skynet.call(addr, "lua", "INCR", nextAccountIdKey())
+    return skynet.call(addr, "lua", "INCR", nextUserid())
 end
 
 

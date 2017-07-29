@@ -6,7 +6,6 @@ local logger = require "common.log.commonlog"
 function login_timeout_fd( ... )
 	skynet.timeout(60 * 100, login_timeout_fd)
 	skynet.send(".login","lua","timeoutClosefd")
-	logger.common.info("login_timeout_fd")
 end
 
 
