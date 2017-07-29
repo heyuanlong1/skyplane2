@@ -32,6 +32,21 @@ message loginLobbyResp
     required int32 errorCode = 1;
 }
 
+message getRoomReq
+{
+    
+}
+message getRoomResp
+{
+    required int32 errorCode = 1;
+    required string roomip  = 2;
+    required int32 roomport= 3;
+}
+
+
+
+
+
 message matchReq
 {
 	

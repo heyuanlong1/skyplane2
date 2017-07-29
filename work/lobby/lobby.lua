@@ -9,6 +9,9 @@ local errorcode     = require "workcommon/macro/errorcode"
 local logger        = require "common.log.commonlog"
 local redisAccount = require "workcommon.db.redis.account"
 
+local roomservice = require "lobby.control.roomservice"
+
+
 --加载pb
 local pbFile
 pbFile = io.open("work/workcommon/pb/msg.pb", "rb")
@@ -22,12 +25,20 @@ local CMD = {}
 
 
 -------------------------------------------------------------------------------------
+
+local function registerService( service )
+    for k, v in pairs(service.getCmd()) do
+        dealCmd[k] = v
+    end
+end
+
+-------------------------------------------------------------------------------------
 local function closefd(fd)
     gateserver.closeclient(fd)          -- 关闭 fd
 end
 
 function handler.open(source, conf)
-    --
+    registerService()
 end
 function handler.connect(fd, addr)
     gateserver.openclient(fd)           -- 允许 fd 接收消息
