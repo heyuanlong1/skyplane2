@@ -40,6 +40,8 @@ print("lobbyip:"..lobbyip)
 print("lobbyport:"..lobbyport)
 
 
+--------------
+
 local fd = assert(socket.connect(lobbyip, lobbyport))
 local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.matchReq),
     {

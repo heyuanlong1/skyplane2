@@ -141,4 +141,24 @@ function utils.urlencode(s)
     return s
 end
 
+function utils.getRandomString(len)
+    local str = {}
+    local tlow="qwertyuiopasdfghjklzxcvbnm"
+    local tup ="QWERTYUIOPASDFGHJKLZXCVBNM"
+    local tnum="0123456789"
+    local tother="_"
+    local templete = tlow..tup..tnum..tother
+    local tlen = string.len(templete)  
+    for i=1,len,1 do
+        local index = math.random(1,tlen)
+        str[i] = string.sub(templete,index,index)
+    end
+
+    local result = "";
+    result = table.concat(str);
+    return result
+end
+
+
+
 return utils

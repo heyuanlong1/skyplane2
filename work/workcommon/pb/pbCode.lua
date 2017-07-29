@@ -3,11 +3,13 @@ local pbCode = {}
 
 -- 消息ID定义
 pbCode.msg = {
+	regReq					= 101,
+	regResp					= 102,
 	loginReq				= 111,
 	loginResp				= 112,
 	matchReq				= 113,
-	matchResp			= 114,
-	fightMsg	= 115,
+	matchResp				= 114,
+	fightMsg				= 115,
 	wailiTestLpushResponse	= 116,
 	wailiTestSortRequest	= 117,
 	wailiTestSortResponse	= 118,
@@ -17,8 +19,9 @@ pbCode.msg = {
 
 -- req - > rep
 local repToResp = {
-	[pbCode.msg.loginReq] = pbCode.msg.loginResp,
-	[pbCode.msg.matchReq] = pbCode.msg.matchResp,
+	[pbCode.msg.regReq] 	= pbCode.msg.regResp,
+	[pbCode.msg.loginReq] 	= pbCode.msg.loginResp,
+	[pbCode.msg.matchReq] 	= pbCode.msg.matchResp,
 	[pbCode.msg.wailiTestSortRequest] = pbCode.msg.wailiTestSortResponse,
 }
 function pbCode.getRepToRespID(msgID)
@@ -29,6 +32,8 @@ end
 
 -- ID 转换为protocol buffer 解析标示
 local msgIDToPBStr = {
+	[pbCode.msg.regReq] = "msg.regReq",
+	[pbCode.msg.regResp] = "msg.regResp",
 	[pbCode.msg.loginReq] = "msg.loginReq",
 	[pbCode.msg.loginResp] = "msg.loginResp",
 	[pbCode.msg.matchReq] = "msg.matchReq",

@@ -1,8 +1,7 @@
 local skynet = require "skynet"
 require "skynet.manager"
 local config = require "config.loginConfig"
-local redisdb = require "common.db.redis.redisdb"
-local mysqldb = require "common.db.mysql.mysqldb"
+local redisLauncher = require "workcommon.db.redis.launcher"
 local logger = require "common.log.commonlog"
 
 
@@ -10,16 +9,18 @@ skynet.start(function()
     
     local getlobby = skynet.newservice("getlobby")
     skynet.call(getlobby, "lua", "start")
+    redisLauncher.launchAccount()
 
     local login = skynet.newservice("login")
+    skynet.name(".login", login)
     skynet.call(login, "lua", "open", {
         port = config.server.port,
         maxclient = 10000,
         nodelay = true,
     })
 
+    skynet.call(skynet.newservice("timeoutManager"), "lua", "start")
 
-
-	logger.common.info("start login")
+	logger.common.info("start login ok")
     skynet.exit()
 end)
