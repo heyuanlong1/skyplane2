@@ -39,7 +39,7 @@ local function closefd(fd)
 end
 
 function handler.open(source, conf)
-    registerService()
+    registerService(roomservice)
 end
 function handler.connect(fd, addr)
     gateserver.openclient(fd)           -- 允许 fd 接收消息
