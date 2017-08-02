@@ -11,6 +11,7 @@ skynet.start(function()
     skynet.call(pushtrans, "lua", "start")
 
     local trans = skynet.newservice("trans")
+    skynet.name(".trans", trans)
     skynet.call(trans, "lua", "open", {
         port = config.server.port,
         maxclient = 10000,

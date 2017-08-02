@@ -2,7 +2,7 @@ local skynet 		= require "skynet"
 local gateserver 	= require "snax.gateserver"
 local socketdriver 	= require "socketdriver"
 local md5 			= require "md5"
-
+local netpack   = require "netpack"
 local protobuf      = require "protobuf"
 local pbCode        = require "workcommon/pb/pbCode"
 local errorcode     = require "workcommon/macro/errorcode"
@@ -41,7 +41,7 @@ function handler.error(fd, msg)
     closefd(fd)
 end
 function handler.message(fd, msg, sz)	--处理网络包
-    local packet = skynet.tostring(msg, sz)
+    local packet = netpack.tostring(msg, sz)
     CMD.message(fd, packet)
 end
 
