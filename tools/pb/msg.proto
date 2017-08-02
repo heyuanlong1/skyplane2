@@ -43,25 +43,38 @@ message getRoomResp
     required int32 roomport= 3;
 }
 
-
-
-
-
 message matchReq
 {
-	
+    required int32 nums = 1;
 }
 message matchResp
 {
     required int32 errorCode = 1;
-    required string ip  = 2;
-    required int32 port= 3;
+    required int32 roomid  = 2;
+    required int32 owneruserid  = 3;
+    required int32 nums= 4;
+    required int32 currnums= 5;
+    required bool isstart= 6;
 }
+
+message startGameReq
+{
+    required int32 roomid  = 1;
+}
+message startGameResp
+{
+    required int32 errorCode = 1;
+    required int32 owneruserid  = 2;
+    required int32 nums= 3;
+    required int32 currnums= 4;
+    required bool isstart= 5;
+}
+
+
 
 message fightMsg
 {
 	required int32 userid = 1;
 	required int32 roomid = 2;
-	required int32 x = 3;
-	required int32 y = 4;
+	required string msg = 3;
 }

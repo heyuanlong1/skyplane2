@@ -1,5 +1,5 @@
 
-æ
+ä
 	msg.protomsg"
 regReq
 deviceid (	">
@@ -13,14 +13,35 @@
 	loginResp
 	errorCode (
 lobbyip (	
-	lobbyport ("
+	lobbyport ("1
+loginLobbyReq
+userid (
+password (	"#
+loginLobbyResp
+	errorCode ("
 
-matchReq"8
+getRoomReq"B
+getRoomResp
+	errorCode (
+roomip (	
+roomport ("
+matchReq
+nums ("t
 	matchResp
-	errorCode (
-
-ip (	
-port ("@
+	errorCode (
+roomid (
+owneruserid (
+nums (
+currnums (
+isstart ("
+startGameReq
+roomid ("h
+startGameResp
+	errorCode (
+owneruserid (
+nums (
+currnums (
+isstart ("@
 fightMsg
 userid (
 roomid (	

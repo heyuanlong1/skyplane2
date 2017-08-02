@@ -37,8 +37,14 @@ class regReq;
 class regResp;
 class loginReq;
 class loginResp;
+class loginLobbyReq;
+class loginLobbyResp;
+class getRoomReq;
+class getRoomResp;
 class matchReq;
 class matchResp;
+class startGameReq;
+class startGameResp;
 class fightMsg;
 
 // ===================================================================
@@ -429,6 +435,352 @@ class loginResp : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class loginLobbyReq : public ::google::protobuf::Message {
+ public:
+  loginLobbyReq();
+  virtual ~loginLobbyReq();
+
+  loginLobbyReq(const loginLobbyReq& from);
+
+  inline loginLobbyReq& operator=(const loginLobbyReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const loginLobbyReq& default_instance();
+
+  void Swap(loginLobbyReq* other);
+
+  // implements Message ----------------------------------------------
+
+  loginLobbyReq* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const loginLobbyReq& from);
+  void MergeFrom(const loginLobbyReq& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 userid = 1;
+  inline bool has_userid() const;
+  inline void clear_userid();
+  static const int kUseridFieldNumber = 1;
+  inline ::google::protobuf::int32 userid() const;
+  inline void set_userid(::google::protobuf::int32 value);
+
+  // required string password = 2;
+  inline bool has_password() const;
+  inline void clear_password();
+  static const int kPasswordFieldNumber = 2;
+  inline const ::std::string& password() const;
+  inline void set_password(const ::std::string& value);
+  inline void set_password(const char* value);
+  inline void set_password(const char* value, size_t size);
+  inline ::std::string* mutable_password();
+  inline ::std::string* release_password();
+  inline void set_allocated_password(::std::string* password);
+
+  // @@protoc_insertion_point(class_scope:msg.loginLobbyReq)
+ private:
+  inline void set_has_userid();
+  inline void clear_has_userid();
+  inline void set_has_password();
+  inline void clear_has_password();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* password_;
+  ::google::protobuf::int32 userid_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static loginLobbyReq* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class loginLobbyResp : public ::google::protobuf::Message {
+ public:
+  loginLobbyResp();
+  virtual ~loginLobbyResp();
+
+  loginLobbyResp(const loginLobbyResp& from);
+
+  inline loginLobbyResp& operator=(const loginLobbyResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const loginLobbyResp& default_instance();
+
+  void Swap(loginLobbyResp* other);
+
+  // implements Message ----------------------------------------------
+
+  loginLobbyResp* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const loginLobbyResp& from);
+  void MergeFrom(const loginLobbyResp& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 errorCode = 1;
+  inline bool has_errorcode() const;
+  inline void clear_errorcode();
+  static const int kErrorCodeFieldNumber = 1;
+  inline ::google::protobuf::int32 errorcode() const;
+  inline void set_errorcode(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:msg.loginLobbyResp)
+ private:
+  inline void set_has_errorcode();
+  inline void clear_has_errorcode();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int32 errorcode_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static loginLobbyResp* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class getRoomReq : public ::google::protobuf::Message {
+ public:
+  getRoomReq();
+  virtual ~getRoomReq();
+
+  getRoomReq(const getRoomReq& from);
+
+  inline getRoomReq& operator=(const getRoomReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const getRoomReq& default_instance();
+
+  void Swap(getRoomReq* other);
+
+  // implements Message ----------------------------------------------
+
+  getRoomReq* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const getRoomReq& from);
+  void MergeFrom(const getRoomReq& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:msg.getRoomReq)
+ private:
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static getRoomReq* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class getRoomResp : public ::google::protobuf::Message {
+ public:
+  getRoomResp();
+  virtual ~getRoomResp();
+
+  getRoomResp(const getRoomResp& from);
+
+  inline getRoomResp& operator=(const getRoomResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const getRoomResp& default_instance();
+
+  void Swap(getRoomResp* other);
+
+  // implements Message ----------------------------------------------
+
+  getRoomResp* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const getRoomResp& from);
+  void MergeFrom(const getRoomResp& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 errorCode = 1;
+  inline bool has_errorcode() const;
+  inline void clear_errorcode();
+  static const int kErrorCodeFieldNumber = 1;
+  inline ::google::protobuf::int32 errorcode() const;
+  inline void set_errorcode(::google::protobuf::int32 value);
+
+  // required string roomip = 2;
+  inline bool has_roomip() const;
+  inline void clear_roomip();
+  static const int kRoomipFieldNumber = 2;
+  inline const ::std::string& roomip() const;
+  inline void set_roomip(const ::std::string& value);
+  inline void set_roomip(const char* value);
+  inline void set_roomip(const char* value, size_t size);
+  inline ::std::string* mutable_roomip();
+  inline ::std::string* release_roomip();
+  inline void set_allocated_roomip(::std::string* roomip);
+
+  // required int32 roomport = 3;
+  inline bool has_roomport() const;
+  inline void clear_roomport();
+  static const int kRoomportFieldNumber = 3;
+  inline ::google::protobuf::int32 roomport() const;
+  inline void set_roomport(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:msg.getRoomResp)
+ private:
+  inline void set_has_errorcode();
+  inline void clear_has_errorcode();
+  inline void set_has_roomip();
+  inline void clear_has_roomip();
+  inline void set_has_roomport();
+  inline void clear_has_roomport();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* roomip_;
+  ::google::protobuf::int32 errorcode_;
+  ::google::protobuf::int32 roomport_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static getRoomResp* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class matchReq : public ::google::protobuf::Message {
  public:
   matchReq();
@@ -482,13 +834,23 @@ class matchReq : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
+  // required int32 nums = 1;
+  inline bool has_nums() const;
+  inline void clear_nums();
+  static const int kNumsFieldNumber = 1;
+  inline ::google::protobuf::int32 nums() const;
+  inline void set_nums(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:msg.matchReq)
  private:
+  inline void set_has_nums();
+  inline void clear_has_nums();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
+  ::google::protobuf::int32 nums_;
   friend void  protobuf_AddDesc_msg_2eproto();
   friend void protobuf_AssignDesc_msg_2eproto();
   friend void protobuf_ShutdownFile_msg_2eproto();
@@ -558,47 +920,270 @@ class matchResp : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 errorcode() const;
   inline void set_errorcode(::google::protobuf::int32 value);
 
-  // required string ip = 2;
-  inline bool has_ip() const;
-  inline void clear_ip();
-  static const int kIpFieldNumber = 2;
-  inline const ::std::string& ip() const;
-  inline void set_ip(const ::std::string& value);
-  inline void set_ip(const char* value);
-  inline void set_ip(const char* value, size_t size);
-  inline ::std::string* mutable_ip();
-  inline ::std::string* release_ip();
-  inline void set_allocated_ip(::std::string* ip);
+  // required int32 roomid = 2;
+  inline bool has_roomid() const;
+  inline void clear_roomid();
+  static const int kRoomidFieldNumber = 2;
+  inline ::google::protobuf::int32 roomid() const;
+  inline void set_roomid(::google::protobuf::int32 value);
 
-  // required int32 port = 3;
-  inline bool has_port() const;
-  inline void clear_port();
-  static const int kPortFieldNumber = 3;
-  inline ::google::protobuf::int32 port() const;
-  inline void set_port(::google::protobuf::int32 value);
+  // required int32 owneruserid = 3;
+  inline bool has_owneruserid() const;
+  inline void clear_owneruserid();
+  static const int kOwneruseridFieldNumber = 3;
+  inline ::google::protobuf::int32 owneruserid() const;
+  inline void set_owneruserid(::google::protobuf::int32 value);
+
+  // required int32 nums = 4;
+  inline bool has_nums() const;
+  inline void clear_nums();
+  static const int kNumsFieldNumber = 4;
+  inline ::google::protobuf::int32 nums() const;
+  inline void set_nums(::google::protobuf::int32 value);
+
+  // required int32 currnums = 5;
+  inline bool has_currnums() const;
+  inline void clear_currnums();
+  static const int kCurrnumsFieldNumber = 5;
+  inline ::google::protobuf::int32 currnums() const;
+  inline void set_currnums(::google::protobuf::int32 value);
+
+  // required bool isstart = 6;
+  inline bool has_isstart() const;
+  inline void clear_isstart();
+  static const int kIsstartFieldNumber = 6;
+  inline bool isstart() const;
+  inline void set_isstart(bool value);
 
   // @@protoc_insertion_point(class_scope:msg.matchResp)
  private:
   inline void set_has_errorcode();
   inline void clear_has_errorcode();
-  inline void set_has_ip();
-  inline void clear_has_ip();
-  inline void set_has_port();
-  inline void clear_has_port();
+  inline void set_has_roomid();
+  inline void clear_has_roomid();
+  inline void set_has_owneruserid();
+  inline void clear_has_owneruserid();
+  inline void set_has_nums();
+  inline void clear_has_nums();
+  inline void set_has_currnums();
+  inline void clear_has_currnums();
+  inline void set_has_isstart();
+  inline void clear_has_isstart();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::std::string* ip_;
   ::google::protobuf::int32 errorcode_;
-  ::google::protobuf::int32 port_;
+  ::google::protobuf::int32 roomid_;
+  ::google::protobuf::int32 owneruserid_;
+  ::google::protobuf::int32 nums_;
+  ::google::protobuf::int32 currnums_;
+  bool isstart_;
   friend void  protobuf_AddDesc_msg_2eproto();
   friend void protobuf_AssignDesc_msg_2eproto();
   friend void protobuf_ShutdownFile_msg_2eproto();
 
   void InitAsDefaultInstance();
   static matchResp* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class startGameReq : public ::google::protobuf::Message {
+ public:
+  startGameReq();
+  virtual ~startGameReq();
+
+  startGameReq(const startGameReq& from);
+
+  inline startGameReq& operator=(const startGameReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const startGameReq& default_instance();
+
+  void Swap(startGameReq* other);
+
+  // implements Message ----------------------------------------------
+
+  startGameReq* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const startGameReq& from);
+  void MergeFrom(const startGameReq& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 roomid = 1;
+  inline bool has_roomid() const;
+  inline void clear_roomid();
+  static const int kRoomidFieldNumber = 1;
+  inline ::google::protobuf::int32 roomid() const;
+  inline void set_roomid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:msg.startGameReq)
+ private:
+  inline void set_has_roomid();
+  inline void clear_has_roomid();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int32 roomid_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static startGameReq* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class startGameResp : public ::google::protobuf::Message {
+ public:
+  startGameResp();
+  virtual ~startGameResp();
+
+  startGameResp(const startGameResp& from);
+
+  inline startGameResp& operator=(const startGameResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const startGameResp& default_instance();
+
+  void Swap(startGameResp* other);
+
+  // implements Message ----------------------------------------------
+
+  startGameResp* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const startGameResp& from);
+  void MergeFrom(const startGameResp& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required int32 errorCode = 1;
+  inline bool has_errorcode() const;
+  inline void clear_errorcode();
+  static const int kErrorCodeFieldNumber = 1;
+  inline ::google::protobuf::int32 errorcode() const;
+  inline void set_errorcode(::google::protobuf::int32 value);
+
+  // required int32 owneruserid = 2;
+  inline bool has_owneruserid() const;
+  inline void clear_owneruserid();
+  static const int kOwneruseridFieldNumber = 2;
+  inline ::google::protobuf::int32 owneruserid() const;
+  inline void set_owneruserid(::google::protobuf::int32 value);
+
+  // required int32 nums = 3;
+  inline bool has_nums() const;
+  inline void clear_nums();
+  static const int kNumsFieldNumber = 3;
+  inline ::google::protobuf::int32 nums() const;
+  inline void set_nums(::google::protobuf::int32 value);
+
+  // required int32 currnums = 4;
+  inline bool has_currnums() const;
+  inline void clear_currnums();
+  static const int kCurrnumsFieldNumber = 4;
+  inline ::google::protobuf::int32 currnums() const;
+  inline void set_currnums(::google::protobuf::int32 value);
+
+  // required bool isstart = 5;
+  inline bool has_isstart() const;
+  inline void clear_isstart();
+  static const int kIsstartFieldNumber = 5;
+  inline bool isstart() const;
+  inline void set_isstart(bool value);
+
+  // @@protoc_insertion_point(class_scope:msg.startGameResp)
+ private:
+  inline void set_has_errorcode();
+  inline void clear_has_errorcode();
+  inline void set_has_owneruserid();
+  inline void clear_has_owneruserid();
+  inline void set_has_nums();
+  inline void clear_has_nums();
+  inline void set_has_currnums();
+  inline void clear_has_currnums();
+  inline void set_has_isstart();
+  inline void clear_has_isstart();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::int32 errorcode_;
+  ::google::protobuf::int32 owneruserid_;
+  ::google::protobuf::int32 nums_;
+  ::google::protobuf::int32 currnums_;
+  bool isstart_;
+  friend void  protobuf_AddDesc_msg_2eproto();
+  friend void protobuf_AssignDesc_msg_2eproto();
+  friend void protobuf_ShutdownFile_msg_2eproto();
+
+  void InitAsDefaultInstance();
+  static startGameResp* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -1154,7 +1739,295 @@ inline void loginResp::set_lobbyport(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
+// loginLobbyReq
+
+// required int32 userid = 1;
+inline bool loginLobbyReq::has_userid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void loginLobbyReq::set_has_userid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void loginLobbyReq::clear_has_userid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void loginLobbyReq::clear_userid() {
+  userid_ = 0;
+  clear_has_userid();
+}
+inline ::google::protobuf::int32 loginLobbyReq::userid() const {
+  // @@protoc_insertion_point(field_get:msg.loginLobbyReq.userid)
+  return userid_;
+}
+inline void loginLobbyReq::set_userid(::google::protobuf::int32 value) {
+  set_has_userid();
+  userid_ = value;
+  // @@protoc_insertion_point(field_set:msg.loginLobbyReq.userid)
+}
+
+// required string password = 2;
+inline bool loginLobbyReq::has_password() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void loginLobbyReq::set_has_password() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void loginLobbyReq::clear_has_password() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void loginLobbyReq::clear_password() {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_->clear();
+  }
+  clear_has_password();
+}
+inline const ::std::string& loginLobbyReq::password() const {
+  // @@protoc_insertion_point(field_get:msg.loginLobbyReq.password)
+  return *password_;
+}
+inline void loginLobbyReq::set_password(const ::std::string& value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set:msg.loginLobbyReq.password)
+}
+inline void loginLobbyReq::set_password(const char* value) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(value);
+  // @@protoc_insertion_point(field_set_char:msg.loginLobbyReq.password)
+}
+inline void loginLobbyReq::set_password(const char* value, size_t size) {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  password_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:msg.loginLobbyReq.password)
+}
+inline ::std::string* loginLobbyReq::mutable_password() {
+  set_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    password_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:msg.loginLobbyReq.password)
+  return password_;
+}
+inline ::std::string* loginLobbyReq::release_password() {
+  clear_has_password();
+  if (password_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = password_;
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void loginLobbyReq::set_allocated_password(::std::string* password) {
+  if (password_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete password_;
+  }
+  if (password) {
+    set_has_password();
+    password_ = password;
+  } else {
+    clear_has_password();
+    password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:msg.loginLobbyReq.password)
+}
+
+// -------------------------------------------------------------------
+
+// loginLobbyResp
+
+// required int32 errorCode = 1;
+inline bool loginLobbyResp::has_errorcode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void loginLobbyResp::set_has_errorcode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void loginLobbyResp::clear_has_errorcode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void loginLobbyResp::clear_errorcode() {
+  errorcode_ = 0;
+  clear_has_errorcode();
+}
+inline ::google::protobuf::int32 loginLobbyResp::errorcode() const {
+  // @@protoc_insertion_point(field_get:msg.loginLobbyResp.errorCode)
+  return errorcode_;
+}
+inline void loginLobbyResp::set_errorcode(::google::protobuf::int32 value) {
+  set_has_errorcode();
+  errorcode_ = value;
+  // @@protoc_insertion_point(field_set:msg.loginLobbyResp.errorCode)
+}
+
+// -------------------------------------------------------------------
+
+// getRoomReq
+
+// -------------------------------------------------------------------
+
+// getRoomResp
+
+// required int32 errorCode = 1;
+inline bool getRoomResp::has_errorcode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void getRoomResp::set_has_errorcode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void getRoomResp::clear_has_errorcode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void getRoomResp::clear_errorcode() {
+  errorcode_ = 0;
+  clear_has_errorcode();
+}
+inline ::google::protobuf::int32 getRoomResp::errorcode() const {
+  // @@protoc_insertion_point(field_get:msg.getRoomResp.errorCode)
+  return errorcode_;
+}
+inline void getRoomResp::set_errorcode(::google::protobuf::int32 value) {
+  set_has_errorcode();
+  errorcode_ = value;
+  // @@protoc_insertion_point(field_set:msg.getRoomResp.errorCode)
+}
+
+// required string roomip = 2;
+inline bool getRoomResp::has_roomip() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void getRoomResp::set_has_roomip() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void getRoomResp::clear_has_roomip() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void getRoomResp::clear_roomip() {
+  if (roomip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    roomip_->clear();
+  }
+  clear_has_roomip();
+}
+inline const ::std::string& getRoomResp::roomip() const {
+  // @@protoc_insertion_point(field_get:msg.getRoomResp.roomip)
+  return *roomip_;
+}
+inline void getRoomResp::set_roomip(const ::std::string& value) {
+  set_has_roomip();
+  if (roomip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    roomip_ = new ::std::string;
+  }
+  roomip_->assign(value);
+  // @@protoc_insertion_point(field_set:msg.getRoomResp.roomip)
+}
+inline void getRoomResp::set_roomip(const char* value) {
+  set_has_roomip();
+  if (roomip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    roomip_ = new ::std::string;
+  }
+  roomip_->assign(value);
+  // @@protoc_insertion_point(field_set_char:msg.getRoomResp.roomip)
+}
+inline void getRoomResp::set_roomip(const char* value, size_t size) {
+  set_has_roomip();
+  if (roomip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    roomip_ = new ::std::string;
+  }
+  roomip_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:msg.getRoomResp.roomip)
+}
+inline ::std::string* getRoomResp::mutable_roomip() {
+  set_has_roomip();
+  if (roomip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    roomip_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:msg.getRoomResp.roomip)
+  return roomip_;
+}
+inline ::std::string* getRoomResp::release_roomip() {
+  clear_has_roomip();
+  if (roomip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = roomip_;
+    roomip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void getRoomResp::set_allocated_roomip(::std::string* roomip) {
+  if (roomip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete roomip_;
+  }
+  if (roomip) {
+    set_has_roomip();
+    roomip_ = roomip;
+  } else {
+    clear_has_roomip();
+    roomip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:msg.getRoomResp.roomip)
+}
+
+// required int32 roomport = 3;
+inline bool getRoomResp::has_roomport() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void getRoomResp::set_has_roomport() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void getRoomResp::clear_has_roomport() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void getRoomResp::clear_roomport() {
+  roomport_ = 0;
+  clear_has_roomport();
+}
+inline ::google::protobuf::int32 getRoomResp::roomport() const {
+  // @@protoc_insertion_point(field_get:msg.getRoomResp.roomport)
+  return roomport_;
+}
+inline void getRoomResp::set_roomport(::google::protobuf::int32 value) {
+  set_has_roomport();
+  roomport_ = value;
+  // @@protoc_insertion_point(field_set:msg.getRoomResp.roomport)
+}
+
+// -------------------------------------------------------------------
+
 // matchReq
+
+// required int32 nums = 1;
+inline bool matchReq::has_nums() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void matchReq::set_has_nums() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void matchReq::clear_has_nums() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void matchReq::clear_nums() {
+  nums_ = 0;
+  clear_has_nums();
+}
+inline ::google::protobuf::int32 matchReq::nums() const {
+  // @@protoc_insertion_point(field_get:msg.matchReq.nums)
+  return nums_;
+}
+inline void matchReq::set_nums(::google::protobuf::int32 value) {
+  set_has_nums();
+  nums_ = value;
+  // @@protoc_insertion_point(field_set:msg.matchReq.nums)
+}
 
 // -------------------------------------------------------------------
 
@@ -1184,104 +2057,276 @@ inline void matchResp::set_errorcode(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:msg.matchResp.errorCode)
 }
 
-// required string ip = 2;
-inline bool matchResp::has_ip() const {
+// required int32 roomid = 2;
+inline bool matchResp::has_roomid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void matchResp::set_has_ip() {
+inline void matchResp::set_has_roomid() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void matchResp::clear_has_ip() {
+inline void matchResp::clear_has_roomid() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void matchResp::clear_ip() {
-  if (ip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_->clear();
-  }
-  clear_has_ip();
+inline void matchResp::clear_roomid() {
+  roomid_ = 0;
+  clear_has_roomid();
 }
-inline const ::std::string& matchResp::ip() const {
-  // @@protoc_insertion_point(field_get:msg.matchResp.ip)
-  return *ip_;
+inline ::google::protobuf::int32 matchResp::roomid() const {
+  // @@protoc_insertion_point(field_get:msg.matchResp.roomid)
+  return roomid_;
 }
-inline void matchResp::set_ip(const ::std::string& value) {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
-  }
-  ip_->assign(value);
-  // @@protoc_insertion_point(field_set:msg.matchResp.ip)
-}
-inline void matchResp::set_ip(const char* value) {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
-  }
-  ip_->assign(value);
-  // @@protoc_insertion_point(field_set_char:msg.matchResp.ip)
-}
-inline void matchResp::set_ip(const char* value, size_t size) {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
-  }
-  ip_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:msg.matchResp.ip)
-}
-inline ::std::string* matchResp::mutable_ip() {
-  set_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    ip_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:msg.matchResp.ip)
-  return ip_;
-}
-inline ::std::string* matchResp::release_ip() {
-  clear_has_ip();
-  if (ip_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = ip_;
-    ip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void matchResp::set_allocated_ip(::std::string* ip) {
-  if (ip_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete ip_;
-  }
-  if (ip) {
-    set_has_ip();
-    ip_ = ip;
-  } else {
-    clear_has_ip();
-    ip_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:msg.matchResp.ip)
+inline void matchResp::set_roomid(::google::protobuf::int32 value) {
+  set_has_roomid();
+  roomid_ = value;
+  // @@protoc_insertion_point(field_set:msg.matchResp.roomid)
 }
 
-// required int32 port = 3;
-inline bool matchResp::has_port() const {
+// required int32 owneruserid = 3;
+inline bool matchResp::has_owneruserid() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void matchResp::set_has_port() {
+inline void matchResp::set_has_owneruserid() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void matchResp::clear_has_port() {
+inline void matchResp::clear_has_owneruserid() {
   _has_bits_[0] &= ~0x00000004u;
 }
-inline void matchResp::clear_port() {
-  port_ = 0;
-  clear_has_port();
+inline void matchResp::clear_owneruserid() {
+  owneruserid_ = 0;
+  clear_has_owneruserid();
 }
-inline ::google::protobuf::int32 matchResp::port() const {
-  // @@protoc_insertion_point(field_get:msg.matchResp.port)
-  return port_;
+inline ::google::protobuf::int32 matchResp::owneruserid() const {
+  // @@protoc_insertion_point(field_get:msg.matchResp.owneruserid)
+  return owneruserid_;
 }
-inline void matchResp::set_port(::google::protobuf::int32 value) {
-  set_has_port();
-  port_ = value;
-  // @@protoc_insertion_point(field_set:msg.matchResp.port)
+inline void matchResp::set_owneruserid(::google::protobuf::int32 value) {
+  set_has_owneruserid();
+  owneruserid_ = value;
+  // @@protoc_insertion_point(field_set:msg.matchResp.owneruserid)
+}
+
+// required int32 nums = 4;
+inline bool matchResp::has_nums() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void matchResp::set_has_nums() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void matchResp::clear_has_nums() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void matchResp::clear_nums() {
+  nums_ = 0;
+  clear_has_nums();
+}
+inline ::google::protobuf::int32 matchResp::nums() const {
+  // @@protoc_insertion_point(field_get:msg.matchResp.nums)
+  return nums_;
+}
+inline void matchResp::set_nums(::google::protobuf::int32 value) {
+  set_has_nums();
+  nums_ = value;
+  // @@protoc_insertion_point(field_set:msg.matchResp.nums)
+}
+
+// required int32 currnums = 5;
+inline bool matchResp::has_currnums() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void matchResp::set_has_currnums() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void matchResp::clear_has_currnums() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void matchResp::clear_currnums() {
+  currnums_ = 0;
+  clear_has_currnums();
+}
+inline ::google::protobuf::int32 matchResp::currnums() const {
+  // @@protoc_insertion_point(field_get:msg.matchResp.currnums)
+  return currnums_;
+}
+inline void matchResp::set_currnums(::google::protobuf::int32 value) {
+  set_has_currnums();
+  currnums_ = value;
+  // @@protoc_insertion_point(field_set:msg.matchResp.currnums)
+}
+
+// required bool isstart = 6;
+inline bool matchResp::has_isstart() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void matchResp::set_has_isstart() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void matchResp::clear_has_isstart() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void matchResp::clear_isstart() {
+  isstart_ = false;
+  clear_has_isstart();
+}
+inline bool matchResp::isstart() const {
+  // @@protoc_insertion_point(field_get:msg.matchResp.isstart)
+  return isstart_;
+}
+inline void matchResp::set_isstart(bool value) {
+  set_has_isstart();
+  isstart_ = value;
+  // @@protoc_insertion_point(field_set:msg.matchResp.isstart)
+}
+
+// -------------------------------------------------------------------
+
+// startGameReq
+
+// required int32 roomid = 1;
+inline bool startGameReq::has_roomid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void startGameReq::set_has_roomid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void startGameReq::clear_has_roomid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void startGameReq::clear_roomid() {
+  roomid_ = 0;
+  clear_has_roomid();
+}
+inline ::google::protobuf::int32 startGameReq::roomid() const {
+  // @@protoc_insertion_point(field_get:msg.startGameReq.roomid)
+  return roomid_;
+}
+inline void startGameReq::set_roomid(::google::protobuf::int32 value) {
+  set_has_roomid();
+  roomid_ = value;
+  // @@protoc_insertion_point(field_set:msg.startGameReq.roomid)
+}
+
+// -------------------------------------------------------------------
+
+// startGameResp
+
+// required int32 errorCode = 1;
+inline bool startGameResp::has_errorcode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void startGameResp::set_has_errorcode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void startGameResp::clear_has_errorcode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void startGameResp::clear_errorcode() {
+  errorcode_ = 0;
+  clear_has_errorcode();
+}
+inline ::google::protobuf::int32 startGameResp::errorcode() const {
+  // @@protoc_insertion_point(field_get:msg.startGameResp.errorCode)
+  return errorcode_;
+}
+inline void startGameResp::set_errorcode(::google::protobuf::int32 value) {
+  set_has_errorcode();
+  errorcode_ = value;
+  // @@protoc_insertion_point(field_set:msg.startGameResp.errorCode)
+}
+
+// required int32 owneruserid = 2;
+inline bool startGameResp::has_owneruserid() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void startGameResp::set_has_owneruserid() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void startGameResp::clear_has_owneruserid() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void startGameResp::clear_owneruserid() {
+  owneruserid_ = 0;
+  clear_has_owneruserid();
+}
+inline ::google::protobuf::int32 startGameResp::owneruserid() const {
+  // @@protoc_insertion_point(field_get:msg.startGameResp.owneruserid)
+  return owneruserid_;
+}
+inline void startGameResp::set_owneruserid(::google::protobuf::int32 value) {
+  set_has_owneruserid();
+  owneruserid_ = value;
+  // @@protoc_insertion_point(field_set:msg.startGameResp.owneruserid)
+}
+
+// required int32 nums = 3;
+inline bool startGameResp::has_nums() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void startGameResp::set_has_nums() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void startGameResp::clear_has_nums() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void startGameResp::clear_nums() {
+  nums_ = 0;
+  clear_has_nums();
+}
+inline ::google::protobuf::int32 startGameResp::nums() const {
+  // @@protoc_insertion_point(field_get:msg.startGameResp.nums)
+  return nums_;
+}
+inline void startGameResp::set_nums(::google::protobuf::int32 value) {
+  set_has_nums();
+  nums_ = value;
+  // @@protoc_insertion_point(field_set:msg.startGameResp.nums)
+}
+
+// required int32 currnums = 4;
+inline bool startGameResp::has_currnums() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void startGameResp::set_has_currnums() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void startGameResp::clear_has_currnums() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void startGameResp::clear_currnums() {
+  currnums_ = 0;
+  clear_has_currnums();
+}
+inline ::google::protobuf::int32 startGameResp::currnums() const {
+  // @@protoc_insertion_point(field_get:msg.startGameResp.currnums)
+  return currnums_;
+}
+inline void startGameResp::set_currnums(::google::protobuf::int32 value) {
+  set_has_currnums();
+  currnums_ = value;
+  // @@protoc_insertion_point(field_set:msg.startGameResp.currnums)
+}
+
+// required bool isstart = 5;
+inline bool startGameResp::has_isstart() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void startGameResp::set_has_isstart() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void startGameResp::clear_has_isstart() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void startGameResp::clear_isstart() {
+  isstart_ = false;
+  clear_has_isstart();
+}
+inline bool startGameResp::isstart() const {
+  // @@protoc_insertion_point(field_get:msg.startGameResp.isstart)
+  return isstart_;
+}
+inline void startGameResp::set_isstart(bool value) {
+  set_has_isstart();
+  isstart_ = value;
+  // @@protoc_insertion_point(field_set:msg.startGameResp.isstart)
 }
 
 // -------------------------------------------------------------------
