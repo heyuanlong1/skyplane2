@@ -78,11 +78,15 @@ CMD.message = function (fd, packet )
     end
     
     if msgId == pbCode.msg.fightMsg then
-        dealFightMsg(userid, req, packet)
+        dealFightMsg(msgId,userid, req, packet)
+    elseif  msgId == pbCode.msg.startGameReq
+        or  msgId == pbCode.msg.matchReq
+    then
+        dealFightMsg(fd,msgId,userid, req, "")
     else
         --这里判断有没有登录
         --获取userid
-        deal(fd,msgId,req,userid)
+        deal(fd,msgId,userid,req)
     end
 end
 -------------------------------------------------------------------------------------
@@ -96,11 +100,14 @@ local function response(fd,msgId,resp)
     socketdriver.send(fd, packet)
 end
 
-local function dealFightMsg( userid, req, packet )
+local function dealFightMsg(fd, msgId,userid, req, packet )
     local f = dealCmd[msgId]
     if f then
         local start_time = skynet.now()
-        local reply =   function()
+        local reply =   function(resp)
+                            if resp ~= nil then
+                                response(fd,msgId,resp)
+                            end
                             local diff_time = skynet.now()-start_time
                             if difftime >= 1 then
                                 logger.common.info("fd:%d,userid:%d msgid:%d dealtime:%d", fd,role.userid,msgId, difftime)
@@ -111,6 +118,7 @@ local function dealFightMsg( userid, req, packet )
                 logger.common.error("userid:%d, msgId:%d error_msg:%s", role.userid, msgId, debug.traceback(errormsg, 2))
             end, 
             reply, 
+            fd,
             userid, 
             req,
             packet)
@@ -120,7 +128,7 @@ local function dealFightMsg( userid, req, packet )
 end
 
 
-local function deal( fd,msgId,req,userid )
+local function deal( fd,msgId,userid ,req)
     local f = dealCmd[msgId]
     if f then
         local start_time = skynet.now()

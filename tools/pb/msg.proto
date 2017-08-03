@@ -45,30 +45,32 @@ message getRoomResp
 
 message matchReq
 {
-    required int32 nums = 1;
+    required int32 roomtype = 1;   //房间类型
+    optional int32 roomid = 2;     //当房间类型为指定roomid时， 才用到
 }
 message matchResp
 {
     required int32 errorCode = 1;
     required int32 roomid  = 2;
-    required int32 owneruserid  = 3;
-    required int32 nums= 4;
-    required int32 currnums= 5;
-    required bool isstart= 6;
+    required int32 roomtype  = 3;
+    required int32 owneruserid  = 4;
+    required int32 nums= 5;               //房间最大人数
+    required int32 currnums= 6;         //当前房间人数
+    repeated int32 usersid = 7;         //房间内玩家id
+    required bool isstart= 8;
 }
 
 message startGameReq
 {
-    required int32 roomid  = 1;
+    required int32 roomid = 1;   //
 }
 message startGameResp
 {
     required int32 errorCode = 1;
-    required int32 owneruserid  = 2;
-    required int32 nums= 3;
-    required int32 currnums= 4;
-    required bool isstart= 5;
+    required int32 roomid  = 2;
+    required bool isstart= 3;
 }
+
 
 
 
@@ -77,4 +79,8 @@ message fightMsg
 	required int32 userid = 1;
 	required int32 roomid = 2;
 	required string msg = 3;
+}
+message fightMsgResp
+{
+    required int32 errorCode = 1;
 }

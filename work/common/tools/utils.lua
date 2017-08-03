@@ -159,6 +159,15 @@ function utils.getRandomString(len)
     return result
 end
 
-
+function utils.isInList(i,list)
+    local x = false
+    for _,v in ipairs(list) do
+        if i == v then
+            x = true
+            break
+        end
+    end
+    return x
+end
 
 return utils

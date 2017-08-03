@@ -18,7 +18,9 @@ pbCode.msg = {
 	startGameReq					= 123,
 	startGameResp					= 124,
 
-	fightMsg						= 135,
+	fightMsg						= 161,
+	fightMsgResp					= 162,
+
 	wailiTestLpushResponse			= 136,
 	wailiTestSortRequest			= 137,
 	wailiTestSortResponse			= 138,
@@ -36,6 +38,8 @@ local repToResp = {
 
 	[pbCode.msg.matchReq] 					= pbCode.msg.matchResp,
 	[pbCode.msg.startGameReq] 				= pbCode.msg.startGameResp,
+
+	[pbCode.msg.fightMsg] 					= pbCode.msg.fightMsgResp,
 
 	[pbCode.msg.wailiTestSortRequest] 		= pbCode.msg.wailiTestSortResponse,
 }
@@ -63,6 +67,8 @@ local msgIDToPBStr = {
 	[pbCode.msg.startGameResp] = "msg.startGameResp",
 
 	[pbCode.msg.fightMsg] = "msg.fightMsg",
+	[pbCode.msg.fightMsgResp] = "msg.fightMsgResp",
+	
 	[pbCode.msg.matchResp] = "msg.matchResp",
 	[pbCode.msg.wailiTestSortRequest] = "msg.wailiTestSortRequest",
 	[pbCode.msg.wailiTestSortResponse] = "msg.wailiTestSortResponse",
