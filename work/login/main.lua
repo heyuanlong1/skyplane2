@@ -9,7 +9,8 @@ skynet.start(function()
     
     local getlobby = skynet.newservice("getlobby")
     skynet.call(getlobby, "lua", "start")
-    redisLauncher.launchAccount()
+
+    redisLauncher.launchAccount(config.redis.account.host,config.redis.account.port,config.redis.account.auth)
 
     local login = skynet.newservice("login")
     skynet.name(".login", login)

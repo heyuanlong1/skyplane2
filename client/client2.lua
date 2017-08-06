@@ -18,11 +18,11 @@ pbFile:close()
 
 
 local fd = assert(socket.connect("127.0.0.1", 9021))
---------------------------------------------------
+---------------------------------------------------------------
 
 local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.regReq),
     {
-        deviceid = "longsssssssd",
+        deviceid = "longssdddddddddd",
     })
 socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.regReq)..stringbuffer) )
 local str   = socket.recv(fd)
@@ -30,7 +30,6 @@ if str == nil or str == "" then
     socket.close(fd)
     os.exit(0)
 end
---socket.close(fd)
 local packet = string.unpack(">s2", str)
 local msgId = string.unpack("<I4", packet)
 local msg = string.sub(packet, 5)
@@ -41,7 +40,7 @@ print("userid:"..userid)
 print("password:"..password)
 
 
---------------------------------------------------
+-------------------------------
 
 local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.loginReq),
     {
@@ -54,7 +53,7 @@ if str == nil or str == "" then
     socket.close(fd)
     os.exit(0)
 end
-socket.close(fd)
+
 local packet = string.unpack(">s2", str)
 local msgId = string.unpack("<I4", packet)
 local msg = string.sub(packet, 5)
@@ -64,34 +63,50 @@ local lobbyport = req.lobbyport
 print("lobbyip:"..lobbyip)
 print("lobbyport:"..lobbyport)
 
-
---------------------------------------------------
+socket.close(fd)
+---------------------------------------------------------------
 
 local fd = assert(socket.connect(lobbyip, lobbyport))
-local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.matchReq),
+local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.loginLobbyReq),
     {
-        
+        userid=userid,
+        password=password,
     })
-socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.matchReq)..stringbuffer) )
-
-local str 
-while true do 
-    str = socket.recv(fd)
-    if str ~= nil then
-        break
-    end
+socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.loginLobbyReq)..stringbuffer) )
+local str   = socket.recv(fd)
+if str == nil or str == "" then
+    socket.close(fd)
+    os.exit(0)
 end
-
-
 local packet = string.unpack(">s2", str)
 local msgId = string.unpack("<I4", packet)
 local msg = string.sub(packet, 5)
 local req, errormsg = protobuf.decode(pbCode.getPBStrByMsgID(msgId), msg, #msg)
-local transip = req.ip
-local transport = req.port
-print("transip:"..transip)
-print("transport:"..transport)
+local errorCode = req.errorCode
+print("login lobby errorCode:"..errorCode)
 
+----------------------------
+
+local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.getRoomAddrReq),
+    {
+    })
+socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.getRoomAddrReq)..stringbuffer) )
+local str   = socket.recv(fd)
+if str == nil or str == "" then
+    socket.close(fd)
+    os.exit(0)
+end
+local packet = string.unpack(">s2", str)
+local msgId = string.unpack("<I4", packet)
+local msg = string.sub(packet, 5)
+local req, errormsg = protobuf.decode(pbCode.getPBStrByMsgID(msgId), msg, #msg)
+local lobbyip = req.lobbyip
+local lobbyport = req.lobbyport
+print("lobbyip:"..lobbyip)
+print("lobbyport:"..lobbyport)
+socket.close(fd)
+---------------------------------------------------------------
+os.exit(0)
 
 local fd = assert(socket.connect(transip, transport))
 
@@ -100,10 +115,10 @@ while true do
 
     local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.fightMsg),
     {
-        userid = 1111,
+        userid = 1,
         roomid = 2,
-        x = 333333,
-        y = 444444,
+        x = 3,
+        y = 4,
     })
     socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.fightMsg)..stringbuffer) )
 

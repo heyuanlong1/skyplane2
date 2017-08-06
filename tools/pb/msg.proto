@@ -32,11 +32,11 @@ message loginLobbyResp
     required int32 errorCode = 1;
 }
 
-message getRoomReq
+message getRoomAddrReq
 {
     
 }
-message getRoomResp
+message getRoomAddrResp
 {
     required int32 errorCode = 1;
     required string roomip  = 2;
@@ -45,14 +45,15 @@ message getRoomResp
 
 message matchReq
 {
-    required int32 roomtype = 1;   //房间类型
-    optional int32 roomid = 2;     //当房间类型为指定roomid时， 才用到
+    required int32 userid = 1;
+    required string roomtype = 2;   //房间类型
+    optional int32 roomid = 3;     //当房间类型为指定roomid时， 才用到
 }
 message matchResp
 {
     required int32 errorCode = 1;
     required int32 roomid  = 2;
-    required int32 roomtype  = 3;
+    required string roomtype  = 3;
     required int32 owneruserid  = 4;
     required int32 nums= 5;               //房间最大人数
     required int32 currnums= 6;         //当前房间人数

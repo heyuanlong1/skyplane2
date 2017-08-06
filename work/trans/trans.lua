@@ -21,6 +21,8 @@ pbFile:close()
 local dealCmd = {}
 local handler = {}
 local CMD = {}
+
+local fd_userid_map = {}
 -------------------------------------------------------------------------------------
 
 local function registerService( service )
@@ -60,6 +62,9 @@ gateserver.start(handler)
 
 -------------------------------------------------------------------------------------
 
+local dealFightMsg
+local deal
+local dealMatch
 
 CMD.message = function (fd, packet )
     local msgId = string.unpack("<I4", packet)
@@ -77,16 +82,21 @@ CMD.message = function (fd, packet )
         return
     end
     
-    if msgId == pbCode.msg.fightMsg then
-        dealFightMsg(msgId,userid, req, packet)
-    elseif  msgId == pbCode.msg.startGameReq
-        or  msgId == pbCode.msg.matchReq
-    then
-        dealFightMsg(fd,msgId,userid, req, "")
+
+    if msgId == pbCode.msg.matchReq then
+        dealMatch(fd,msgId, req)
     else
-        --这里判断有没有登录
-        --获取userid
-        deal(fd,msgId,userid,req)
+        local userid = fd_userid_map[fd]
+        if msgId == pbCode.msg.fightMsg then
+            dealFightMsg(msgId,userid, req, packet)
+
+        elseif  msgId == pbCode.msg.startGameReq then
+            dealFightMsg(fd,msgId,userid, req, "")
+        else
+            --这里判断有没有登录
+            --获取userid
+            deal(fd,msgId,userid,req)
+        end
     end
 end
 -------------------------------------------------------------------------------------
@@ -100,7 +110,35 @@ local function response(fd,msgId,resp)
     socketdriver.send(fd, packet)
 end
 
-local function dealFightMsg(fd, msgId,userid, req, packet )
+dealMatch = function ( fd,msgId ,req)
+    local f = dealCmd[msgId]
+    if f then
+        local start_time = skynet.now()
+        local reply =   function(resp)
+                            response(fd,msgId,resp)
+                            local diff_time = skynet.now()-start_time
+                            if difftime >= 1 then
+                                logger.common.info("fd:%d,userid:%d msgid:%d dealtime:%d", fd,role.userid,msgId, difftime)
+                            end
+                        end
+        local status ,userid = xpcall(f, 
+            function(errormsg)
+                logger.common.error("userid:%d, msgId:%d error_msg:%s", role.userid, msgId, debug.traceback(errormsg, 2))
+            end, 
+            reply, 
+            fd, 
+            req)
+        if status == true then
+            fd_userid_map[fd] = userid
+        end
+
+    else
+        logger.common.info("fd:%d,userid:%d not_this_msgid_deal_function:%d ", fd,role.userid, msgId)
+    end
+end
+
+
+dealFightMsg = function (fd, msgId,userid, req, packet )
     local f = dealCmd[msgId]
     if f then
         local start_time = skynet.now()
@@ -128,7 +166,7 @@ local function dealFightMsg(fd, msgId,userid, req, packet )
 end
 
 
-local function deal( fd,msgId,userid ,req)
+deal = function ( fd,msgId,userid ,req)
     local f = dealCmd[msgId]
     if f then
         local start_time = skynet.now()

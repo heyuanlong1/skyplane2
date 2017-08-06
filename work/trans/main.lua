@@ -18,9 +18,6 @@ skynet.start(function()
         nodelay = true,
     })
 
-    local fightroom = skynet.newservice("fightroom")
-    skynet.call(fightroom, "lua", "start")
-
 	logger.common.info("start lobby")
     skynet.exit()
 end)

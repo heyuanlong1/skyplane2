@@ -10,8 +10,8 @@ pbCode.msg = {
 
 	loginLobbyReq					= 113,
 	loginLobbyResp					= 114,
-	getRoomReq						= 115,
-	getRoomResp						= 116,
+	getRoomAddrReq						= 115,
+	getRoomAddrResp						= 116,
 
 	matchReq						= 121,
 	matchResp						= 122,
@@ -34,7 +34,7 @@ local repToResp = {
 	[pbCode.msg.loginReq] 					= pbCode.msg.loginResp,
 
 	[pbCode.msg.loginLobbyReq] 				= pbCode.msg.loginLobbyResp,
-	[pbCode.msg.getRoomReq] 				= pbCode.msg.getRoomResp,
+	[pbCode.msg.getRoomAddrReq] 				= pbCode.msg.getRoomAddrResp,
 
 	[pbCode.msg.matchReq] 					= pbCode.msg.matchResp,
 	[pbCode.msg.startGameReq] 				= pbCode.msg.startGameResp,
@@ -58,8 +58,8 @@ local msgIDToPBStr = {
 
 	[pbCode.msg.loginLobbyReq] = "msg.loginLobbyReq",
 	[pbCode.msg.loginLobbyResp] = "msg.loginLobbyResp",
-	[pbCode.msg.getRoomReq] = "msg.getRoomReq",
-	[pbCode.msg.getRoomResp] = "msg.getRoomResp",
+	[pbCode.msg.getRoomAddrReq] = "msg.getRoomAddrReq",
+	[pbCode.msg.getRoomAddrResp] = "msg.getRoomAddrResp",
 
 	[pbCode.msg.matchReq] = "msg.matchReq",
 	[pbCode.msg.matchResp] = "msg.matchResp",

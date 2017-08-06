@@ -7,6 +7,7 @@ local logger                = require "common.log.commonlog"
 local socketdriver          = require "socketdriver"
 local utils                 = require "common.tools.utils"
 
+local service ={}
 local roomMap = {}
 local CMD = {}
 
@@ -22,17 +23,17 @@ function getRoomid( )
     return g_roomid
 end
 local roomType = {
-    pvp1                = 1
-    pvp2                = 2
-    pvp3                = 3
-    pvp4                = 4
-    pvproomid           = 1000
+    pvp1                = 1,
+    pvp2                = 2,
+    pvp3                = 3,
+    pvp4                = 4,
+    pvproomid           = 1000,
 }
 
 local userMap = {}                  --userid -> {fd,roomType,roomid}
 local roomMap = {}                  
-for _,v in pairs(roomType) do
-    roomMap[v] = {}                 
+for k,_ in pairs(roomType) do
+    roomMap[k] = {}                 
 end
 -- {
 --     roomType1 = {
@@ -50,8 +51,8 @@ end
 -- }
 
 local canInRoomMap = {}
-for _,v in pairs(roomType) do
-    canInRoomMap[v] = {}                 
+for k,_ in pairs(roomType) do
+    canInRoomMap[k] = {}                 
 end
 --     roomType1 = {
 --         roomid = currnums,
@@ -84,7 +85,8 @@ end
 
 -------------------------------------------------------------------------------------
 
-CMD[pbCode.msg.matchReq] = function (reply, fd,userid, req , _ )
+CMD[pbCode.msg.matchReq] = function (reply, fd, req )
+    local userid = req.userid
     logger.common.info("matchReq")
     local resp = {
      errorCode = 0,
@@ -101,24 +103,31 @@ CMD[pbCode.msg.matchReq] = function (reply, fd,userid, req , _ )
     if roomType[room_type] == nil then
         resp.errorCode = errorcode.notroomtype
         reply(resp)
-        return 
+
+        logger.common.info("errorcode.notroomtype")
+        return 0
     end
+    logger.common.info("1111")
 
     local roomid = 0
-    if room_type == roomType.pvproomid then
-
+    if room_type == "pvproomid" then
+logger.common.info("45454")
     else
+         logger.common.info("222222222")
         for k,v in pairs(canInRoomMap[room_type]) do
+            logger.common.info("222")
             roomid = k
             canInRoomMap[room_type][k] = canInRoomMap[room_type][k] + 1
             if canInRoomMap[room_type][k] == roomType[room_type] then
                 canInRoomMap[room_type][k] = nil
             end
-            table.insert(roomMap[roomid].users,usersid)
-            roomMap[roomid].userNums = roomMap[roomid].userNums + 1
+            table.insert(roomMap[room_type][roomid].users,usersid)
+            roomMap[room_type][roomid].userNums = roomMap[room_type][roomid].userNums + 1
             break
         end
+        logger.common.info("77777777777")
         if roomid == 0 then
+            logger.common.info("8888888888")
             local rid =getRoomid()
             canInRoomMap[room_type][rid] = 1
             roomMap[room_type][rid] = {users = {userid},userNums = 1,roomstatus = ROOM_NOTSTART }
@@ -126,18 +135,33 @@ CMD[pbCode.msg.matchReq] = function (reply, fd,userid, req , _ )
         end
     end
 
+    logger.common.info("333")
+    logger.common.info(userid.."ddddddd")
+    userMap[userid]={}
     userMap[userid].fd = fd
     userMap[userid].roomtype = room_type
     userMap[userid].roomid = roomid
 
+    logger.common.info("33344")
     resp.roomid = roomid
-    resp.currnums = table.getn(roomMap[room_type][roomid].users)
+    logger.common.info("33344")
+     resp.currnums = 0
+    for k,v in pairs(roomMap[room_type][roomid].users) do
+        resp.currnums = resp.currnums + 1
+    end
+    --resp.currnums = table.getn(roomMap[room_type][roomid].users)
+    logger.common.info("33344")
     resp.usersid = roomMap[room_type][roomid].users
 
+    logger.common.info("8888888899999")
     for _,userid in ipairs( roomMap[room_type][roomid]["users"]) do
+            logger.common.info("444")
             response(userMap[userid]["fd"],pbCode.msg.matchReq,resp)
     end
+
+    logger.common.info("errorcode.0")
     reply(nil)
+    return req.userid
 end
 
 
@@ -179,15 +203,6 @@ CMD[pbCode.msg.startGameReq] = function (reply,fd, userid, req , _ )
     reply(nil)
 end
 
-
-
-
-message fightMsg
-{
-    required int32 userid = 1;
-    required int32 roomid = 2;
-    required string msg = 3;
-}
 
 CMD[pbCode.msg.fightMsg] = function (reply,fd, userid, req, packet)
     logger.common.info("fightMsg");

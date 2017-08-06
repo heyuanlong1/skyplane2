@@ -22,7 +22,7 @@ trans_ndex = 1
 testPay = true
 
 --ls配置
-daemon = "/var/log/skynet/pid/trans1.pid"
-logger = "/var/log/skynet/log/trans1.log"
-logpath = "."
+--daemon = "/var/log/skynet/pid/trans1.pid"
+--logger = "/var/log/skynet/log/trans1.log"
+--logpath = "."
 

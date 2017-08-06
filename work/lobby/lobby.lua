@@ -65,7 +65,8 @@ end
 gateserver.start(handler)
 
 -------------------------------------------------------------------------------------
-
+local dealLogin
+local deal
 
 CMD.timeoutClosefd = function ()
     -- local t = skynet.now()
@@ -113,7 +114,7 @@ local function response(fd,msgId,resp)
     local packet = string.pack(">s2", string.pack("<I4", respId)..msg)
     socketdriver.send(fd, packet)
 end
-local function dealLogin( fd,msgId,req )
+dealLogin = function ( fd,msgId,req )
     local resp = {errorCode = 0}
 
     local passwd = redisAccount.getUserPassword(req.userid)
@@ -125,7 +126,7 @@ local function dealLogin( fd,msgId,req )
     response(fd,pbCode.msg.loginLobbyReq,resp)
 end
 
-local function deal( fd,msgId,req,role )
+deal= function ( fd,msgId,req,role )
     local f = dealCmd[msgId]
     if f then
         local start_time = skynet.now()
