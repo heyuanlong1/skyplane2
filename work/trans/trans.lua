@@ -88,7 +88,7 @@ CMD.message = function (fd, packet )
     else
         local userid = fd_userid_map[fd]
         if msgId == pbCode.msg.fightMsg then
-            dealFightMsg(msgId,userid, req, packet)
+            dealFightMsg(fd,msgId,userid, req, packet)
 
         elseif  msgId == pbCode.msg.startGameReq then
             dealFightMsg(fd,msgId,userid, req, "")
@@ -114,26 +114,27 @@ dealMatch = function ( fd,msgId ,req)
     local f = dealCmd[msgId]
     if f then
         local start_time = skynet.now()
-        local reply =   function(resp)
-                            response(fd,msgId,resp)
-                            local diff_time = skynet.now()-start_time
-                            if difftime >= 1 then
-                                logger.common.info("fd:%d,userid:%d msgid:%d dealtime:%d", fd,role.userid,msgId, difftime)
+        local reply =   function(resp,userid)
+                            if resp ~= nil then
+                                response(fd,msgId,resp)
+                            else
+                                fd_userid_map[fd] = userid
+                                logger.common.info("--------------userid-----------:"..userid)
+                            end
+                            local diff_time = skynet.now() - start_time
+                            if diff_time >= 0 then
+                                logger.common.info("fd:%d,msgid:%d dealtime:%d", fd,msgId, diff_time)
                             end
                         end
         local status ,userid = xpcall(f, 
             function(errormsg)
-                logger.common.error("userid:%d, msgId:%d error_msg:%s", role.userid, msgId, debug.traceback(errormsg, 2))
+                logger.common.error("msgId:%d error_msg:%s", msgId, debug.traceback(errormsg, 2))
             end, 
             reply, 
             fd, 
             req)
-        if status == true then
-            fd_userid_map[fd] = userid
-        end
-
     else
-        logger.common.info("fd:%d,userid:%d not_this_msgid_deal_function:%d ", fd,role.userid, msgId)
+        logger.common.info("fd:%d,not_this_msgid_deal_function:%d ", fd, msgId)
     end
 end
 
@@ -147,13 +148,13 @@ dealFightMsg = function (fd, msgId,userid, req, packet )
                                 response(fd,msgId,resp)
                             end
                             local diff_time = skynet.now()-start_time
-                            if difftime >= 1 then
-                                logger.common.info("fd:%d,userid:%d msgid:%d dealtime:%d", fd,role.userid,msgId, difftime)
+                            if diff_time >= 1 then
+                                logger.common.info("fd:%d,userid:%d msgid:%d dealtime:%d", fd,userid,msgId, difftime)
                             end
                         end
         xpcall(f, 
             function(errormsg)
-                logger.common.error("userid:%d, msgId:%d error_msg:%s", role.userid, msgId, debug.traceback(errormsg, 2))
+                logger.common.error("userid:%d, msgId:%d error_msg:%s",userid, msgId, debug.traceback(errormsg, 2))
             end, 
             reply, 
             fd,
@@ -161,7 +162,7 @@ dealFightMsg = function (fd, msgId,userid, req, packet )
             req,
             packet)
     else
-        logger.common.info("fd:%d,userid:%d not_this_msgid_deal_function:%d ", fd,role.userid, msgId)
+        logger.common.info("fd:%d,userid:%d not_this_msgid_deal_function:%d ", fd,userid, msgId)
     end
 end
 

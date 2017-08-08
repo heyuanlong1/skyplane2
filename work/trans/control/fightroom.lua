@@ -13,8 +13,8 @@ local CMD = {}
 
 
 -------------------------------------------------------------------------------------
-local ROOM_NOTSTART = 0
-local ROOM_START = 1
+local ROOM_NOTSTART = false
+local ROOM_START = true
 
 
 local g_roomid = 0
@@ -105,7 +105,7 @@ CMD[pbCode.msg.matchReq] = function (reply, fd, req )
         reply(resp)
 
         logger.common.info("errorcode.notroomtype")
-        return 0
+        return
     end
     logger.common.info("1111")
 
@@ -115,13 +115,13 @@ logger.common.info("45454")
     else
          logger.common.info("222222222")
         for k,v in pairs(canInRoomMap[room_type]) do
-            logger.common.info("222")
+            logger.common.info("222"..k)
             roomid = k
             canInRoomMap[room_type][k] = canInRoomMap[room_type][k] + 1
             if canInRoomMap[room_type][k] == roomType[room_type] then
                 canInRoomMap[room_type][k] = nil
             end
-            table.insert(roomMap[room_type][roomid].users,usersid)
+            table.insert(roomMap[room_type][roomid].users,userid)
             roomMap[room_type][roomid].userNums = roomMap[room_type][roomid].userNums + 1
             break
         end
@@ -145,13 +145,14 @@ logger.common.info("45454")
     logger.common.info("33344")
     resp.roomid = roomid
     logger.common.info("33344")
-     resp.currnums = 0
+    resp.currnums = 0
     for k,v in pairs(roomMap[room_type][roomid].users) do
         resp.currnums = resp.currnums + 1
     end
     --resp.currnums = table.getn(roomMap[room_type][roomid].users)
     logger.common.info("33344")
     resp.usersid = roomMap[room_type][roomid].users
+    resp.isstart = roomMap[room_type][roomid].roomstatus
 
     logger.common.info("8888888899999")
     for _,userid in ipairs( roomMap[room_type][roomid]["users"]) do
@@ -160,8 +161,8 @@ logger.common.info("45454")
     end
 
     logger.common.info("errorcode.0")
-    reply(nil)
-    return req.userid
+    reply(nil,req.userid)
+    return 
 end
 
 
@@ -175,31 +176,30 @@ CMD[pbCode.msg.startGameReq] = function (reply,fd, userid, req , _ )
      isstart= false,
     }
 
+    logger.common.info(userid.."1")
     local room_type = userMap[userid].roomtype
     local roomid = req.roomid
-    if roomType[room_type] == nil then
-        resp.errorCode = errorcode.notroomtype
-        reply(resp)
-        return 
-    end
+
+    logger.common.info("2")
     if roomMap[room_type][roomid] == nil then
         resp.errorCode = errorcode.notroomid
         reply(resp)
         return
     end
-
-    if utils.isInList(usersid,roomMap[room_type][roomid]["users"]) == false then
+    logger.common.info("3")
+    if utils.isInList(userid,roomMap[room_type][roomid]["users"]) == false then
         resp.errorCode = errorcode.usernotinthisroom
         reply(resp)
         return
     end
-
-    roomMap[roomid].roomstatus = ROOM_START
+    logger.common.info("4")
+    roomMap[room_type][roomid].roomstatus = ROOM_START
     resp.isstart = true
  
     for _,uid in ipairs( roomMap[room_type][roomid]["users"]) do
             response(userMap[uid]["fd"],pbCode.msg.startGameReq,resp)
     end
+    logger.common.info("5")
     reply(nil)
 end
 
@@ -208,30 +208,38 @@ CMD[pbCode.msg.fightMsg] = function (reply,fd, userid, req, packet)
     logger.common.info("fightMsg");
     local resp = {errorCode = 0}
 
+    logger.common.info("userid:%d",req.userid)
+    logger.common.info("roomid:%d",req.roomid)
+    logger.common.info("msg:%s",req.msg)
+
     local room_type = userMap[userid].roomtype
     local roomid = req.roomid
-    if roomType[room_type] == nil then
-        resp.errorCode = errorcode.notroomtype
-        reply(resp)
-        return 
-    end
+
+    logger.common.info("4")
+
     if roomMap[room_type][roomid] == nil then
         resp.errorCode = errorcode.notroomid
         reply(resp)
         return
     end
 
-    if utils.isInList(usersid,roomMap[room_type][roomid]["users"]) == false then
+    logger.common.info("5")
+
+    if utils.isInList(userid,roomMap[room_type][roomid]["users"]) == false then
         resp.errorCode = errorcode.usernotinthisroom
         reply(resp)
         return
     end
+    logger.common.info("6")
 
  
     for _,uid in ipairs( roomMap[room_type][roomid]["users"]) do
-            responsePacket(userMap[uid]["fd"],packet)
+            if uid ~= userid then
+                responsePacket(userMap[uid]["fd"],packet)
+            end
     end
     
+    logger.common.info("7")
     reply(nil)
 end
 

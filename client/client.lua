@@ -64,6 +64,7 @@ print("lobbyip:"..lobbyip)
 print("lobbyport:"..lobbyport)
 
 socket.close(fd)
+print("")
 ---------------------------------------------------------------
 
 local fd = assert(socket.connect(lobbyip, lobbyport))
@@ -107,6 +108,7 @@ print("errorCode:"..errorCode)
 print("roomip:"..roomip)
 print("roomport:"..roomport)
 socket.close(fd)
+print("")
 ---------------------------------------------------------------
 
 
@@ -129,16 +131,19 @@ local msg = string.sub(packet, 5)
 local req, errormsg = protobuf.decode(pbCode.getPBStrByMsgID(msgId), msg, #msg)
 local roomid = req.roomid
 local errorCode = req.errorCode
+local isstart = req.isstart
 print("errorCode:"..errorCode)
 print("roomid:"..roomid)
+print("isstart:",isstart)
 
-os.exit(0)
+
 ----------------------------
 
-local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.getRoomAddrReq),
+local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.startGameReq),
     {
+    roomid = roomid
     })
-socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.getRoomAddrReq)..stringbuffer) )
+socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.startGameReq)..stringbuffer) )
 local str   = socket.recv(fd)
 if str == nil or str == "" then
     socket.close(fd)
@@ -148,29 +153,21 @@ local packet = string.unpack(">s2", str)
 local msgId = string.unpack("<I4", packet)
 local msg = string.sub(packet, 5)
 local req, errormsg = protobuf.decode(pbCode.getPBStrByMsgID(msgId), msg, #msg)
-local roomip = req.roomip
-local roomport = req.roomport
 local errorCode = req.errorCode
+local isstart = req.isstart
 print("errorCode:"..errorCode)
-print("roomip:"..roomip)
-print("roomport:"..roomport)
-socket.close(fd)
+print("isstart:",isstart)
 ---------------------------------------------------------------
 
 
-os.exit(0)
-
-local fd = assert(socket.connect(transip, transport))
 
 while true do
 
-
     local stringbuffer = protobuf.encode(  pbCode.getPBStrByMsgID(pbCode.msg.fightMsg),
     {
-        userid = 1,
-        roomid = 2,
-        x = 3,
-        y = 4,
+        userid = userid,
+        roomid = roomid,
+        msg = "xxxxxxxxxxx"
     })
     socket.send(fd, string.pack(">s2", string.pack("<I4", pbCode.msg.fightMsg)..stringbuffer) )
 
@@ -186,10 +183,15 @@ while true do
     local msgId = string.unpack("<I4", packet)
     local msg = string.sub(packet, 5)
     local req, errormsg = protobuf.decode(pbCode.getPBStrByMsgID(msgId), msg, #msg)
-    print("userid:"..req.userid)
-    print("roomid:"..req.roomid)
-    print("x:"..req.x)
-    print("y:"..req.y)
+    if msgId == pbCode.msg.fightMsg then
+        print("userid:",req.userid)
+        print("roomid:",req.roomid)
+        print("msg:",req.msg)
+    elseif msgId == pbCode.msg.fightMsgResp then
+        print("errorCode:",req.errorCode)
+        break
+    else
+    end 
 
 end
 
